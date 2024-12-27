@@ -1,0 +1,5 @@
+CC = cpp
+
+
+all : 
+    echo "welcome"
