@@ -28,9 +28,11 @@ bool    FindContactInfo(PhoneBook& Phone)
 
     if (Phone.ContactNumber == 0)
         return(Phone.Error("No Contact To Display Or Search For\n"));
+    std::cout << "|  Index   | First Name | Last Name  | Nick Name  |\n";
+    std::cout << " -------------------------------------------------\n";
     for (int i = 0; i < Phone.ContactNumber; i++)
     {
-        std::cout << "| " << i << " | ";
+        std::cout << "|    " << i << "     | ";
         Phone.print_ten_char(Phone.Contacts[i].FirstName);
         std::cout << " | ";
         Phone.print_ten_char(Phone.Contacts[i].LastName);
@@ -39,16 +41,16 @@ bool    FindContactInfo(PhoneBook& Phone)
         std::cout << " |\n";
     }
     if (!Phone.readline("Please Entre The Contact Index: ", Phone.Input))
-        return(Phone.Error("Error in readin the line \n"));
+        return(Phone.Error("No Input\n"));
     index = std::atoi(Phone.Input.c_str());
     if (index > 8 || index < 0 || index >= Phone.ContactNumber || !Phone.IsNumber(Phone.Input))
         return (Phone.Error("This Index Not Found!\n"));
     else
     {
-        std::cout << index << std::endl;
-        std::cout << Phone.Contacts[index].FirstName << std::endl;
-        std::cout << Phone.Contacts[index].LastName << std::endl;
-        std::cout << Phone.Contacts[index].NickName << std::endl;
+        std::cout << "Index : " << index << std::endl;
+        std::cout << "First Name : " << Phone.Contacts[index].FirstName << std::endl;
+        std::cout << "Last Name : " << Phone.Contacts[index].LastName << std::endl;
+        std::cout << "Nick Name : " << Phone.Contacts[index].NickName << std::endl;
     }
     return true;
 }
@@ -64,15 +66,13 @@ int main(void)
     while (true)
     {
         Phone.readline("Choose Your Option? ", Phone.Input);
-        int index;
+        if (std::cin.eof())
+            break;
         if (Phone.Input == "ADD")
             AddContact(Phone);
         else if (Phone.Input == "SEARCH")
             FindContactInfo(Phone);
         else if (Phone.Input == "EXIT")
             return 0;
-        index = Phone.ContactIndex - 1;
-        if  (Phone.ContactIndex > 0 && Phone.ContactIndex < 8)
-            Phone.PrintContactInfo(Phone.Contacts[index], index);
     }
 }

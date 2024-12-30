@@ -41,20 +41,6 @@ class   PhoneBook
             return false;
         return (true);
     }
-    
-    void PrintContactInfo(Contact& contacts, int i)
-    {
-        if (!contacts.FirstName.empty())
-            std::cout << Contacts[i].FirstName << '\n';
-        if (!contacts.LastName.empty())
-            std::cout << Contacts[i].LastName << '\n';
-        if (!contacts.NickName.empty())
-            std::cout << Contacts[i].NickName << '\n';
-        if (!contacts.PhoneNumber.empty())
-            std::cout << Contacts[i].PhoneNumber << '\n';
-        if (!contacts.DarkSecret.empty())
-            std::cout << Contacts[i].DarkSecret << '\n';
-    }
 
     void    print_ten_char(std::string& str)
     {
@@ -63,16 +49,17 @@ class   PhoneBook
         i = 0;
         if (str.empty())
             return;
-        while (i < str.length() && i < 9)
+        while (i < (int)str.length() && i < 9)
             putchar(str[i++]);
         if (str.length() > 10)
-            putchar('.');
-        else if (i < str.length())
-            putchar(str[i++]);
-        while (i++ < 9)
         {
-            putchar(' '); 
+            putchar('.');
+            i++;
         }
+        else if (i < (int)str.length())
+            putchar(str[i++]);
+        while (i++ < 10)
+            putchar(' '); 
     }
 
     bool    IsNumber(std::string& str)
