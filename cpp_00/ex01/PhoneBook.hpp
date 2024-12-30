@@ -7,22 +7,25 @@ class   PhoneBook
 {
     public:
         std::string Input;
-        Contact     Contact[8];
+        Contact     Contacts[8];
         int         ContactIndex;
     PhoneBook(void)
     {
         ContactIndex = 0;
     }
+
     int Error(std::string ErrorMsg)
     {
         std::cout << ErrorMsg << '\n';
         return (false);
     }
+
     void    print(std::string Msg)
     {
         std::cout << Msg;
     }
-    bool readline(std:: string Prompt, std::string Contact_Buffer)
+
+    bool readline(std:: string Prompt, std::string& Contact_Buffer)
     {
         print(Prompt);
         if (!std::getline(std::cin, Contact_Buffer))
@@ -30,6 +33,14 @@ class   PhoneBook
         return (true);
     }
     
+    void PrintContactInfo(Contact& contacts, int i)
+    {
+        print(Contacts[i].FirstName);
+        print(Contacts[i].LastName);
+        print(Contacts[i].NickName);
+        print(Contacts[i].PhoneNumber);
+        print(Contacts[i].DarkSecret);
+    }
 
 };
 
