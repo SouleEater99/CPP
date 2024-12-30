@@ -12,7 +12,6 @@ class   Contact
         std::string NickName;
         std::string PhoneNumber;
         std::string DarkSecret;
-
 };
 
 #endif

@@ -45,12 +45,27 @@ class   PhoneBook
     void    print_ten_char(std::string& str)
     {
         int i;
+        int count;
 
         i = 0;
+        count = 0;
         if (str.empty())
             return;
         while (i < (int)str.length() && i < 9)
-            putchar(str[i++]);
+        {
+            if (iswspace(str[i]) && count == 0)
+            {
+
+                std::cout << ' ';
+                count++;
+            }
+            else if (!iswspace(str[i]))
+            {
+                std::cout << str[i];
+                count = 0;
+            }
+            i++;
+        }
         if (str.length() > 10)
         {
             putchar('.');
