@@ -40,8 +40,8 @@ bool    FindContactInfo(PhoneBook& Phone)
     }
     if (!Phone.readline("Please Entre The Contact Index: ", Phone.Input))
         return(Phone.Error("Error in readin the line \n"));
-    index = std::atoi(Phone.Input.c_str());         // I NEED TO CHECK IF IT'S DIGIT OR NOT
-    if (index > 8 || index < 0 || index >= Phone.ContactNumber)
+    index = std::atoi(Phone.Input.c_str());
+    if (index > 8 || index < 0 || index >= Phone.ContactNumber || !Phone.IsNumber(Phone.Input))
         return (Phone.Error("This Index Not Found!\n"));
     else
     {

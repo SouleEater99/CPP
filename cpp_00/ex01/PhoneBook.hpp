@@ -22,12 +22,12 @@ class   PhoneBook
         return (false);
     }
 
-    void    print_nl(std::string Msg)
+    void    print_nl(std::string& Msg)
     {
         std::cout << Msg << std::endl;
     }
 
-    void    print(std::string Msg)
+    void    print(std::string& Msg)
     {
         std::cout << Msg;
     }
@@ -73,6 +73,13 @@ class   PhoneBook
         {
             putchar(' '); 
         }
+    }
+
+    bool    IsNumber(std::string& str)
+    {
+        if (str.length() > 2 || !isdigit(str[0]))
+            return (false);
+        return true;
     }
 };
 
