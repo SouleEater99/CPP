@@ -36,7 +36,7 @@ bool PhoneBook::SetContact(Contact& Contact_Buffer)
     if (!readline("Entre Your Nick Name: ", buffer))
         return (Error("Fail to Add F Nick Name"));
     Contact_Buffer.SetNickName(buffer);
-    if (!readline("Entre Your Phone Number: ", buffer))
+    if (!readline("Entre Your Phone Number (without spaces): ", buffer) || !IsNumber(buffer))
         return (Error("Fail to Add Phone Number"));
     Contact_Buffer.SetPhoneNumber(buffer);
     if (!readline("Entre Your Dark Secret: ", buffer))
@@ -72,15 +72,14 @@ void PhoneBook::print_ten_char(const std::string &str)
 
 bool PhoneBook::IsNumber(std::string &str)
 {
-    if (str.length() > 2 || !isdigit(str[0]))
-        return (false);
+    for (int i = 0; i < str.length(); i++)
+        if (!std::isdigit(str[i]))
+            return false;
     return true;
 }
 
-bool    PhoneBook::FindContactInfo()
+bool    PhoneBook::PrintTable()
 {
-    int index;
-
     if (ContactNumber == 0)
         return(Error("No Contact To Display Or Search For\n"));
     std::cout << "|  Index   | First Name | Last Name  | Nick Name  |\n";
@@ -96,10 +95,20 @@ bool    PhoneBook::FindContactInfo()
         print_ten_char(Contacts[i].GetNickName());
         std::cout << " |\n";
     }
+    return true;
+}
+
+bool    PhoneBook::FindContactInfo()
+{
+    int     index;
+    char    *str;
+
+    if (!PrintTable())
+        return false;
     if (!readline("Please Entre The Contact Index: ", Input))
         return(Error("No Input\n"));
     index = std::atoi(Input.c_str());
-    if (index > 8 || index < 0 || index >= ContactNumber || !IsNumber(Input))
+    if (!IsNumber(Input) || index > 8 ||  index < 0 || index >= ContactNumber)
         return (Error("This Index Not Found!\n"));
     else
     {
@@ -117,10 +126,10 @@ bool    PhoneBook::AddContact()
 
     if (!SetContact(Contact_Buffer))
         return false;
-    if (ContactIndex >= 8)
+    if (ContactIndex >= MAX_CONTACTS)
         ContactIndex = 0;
     Contacts[ContactIndex++] = Contact_Buffer;
-    if (ContactNumber < 8)
+    if (ContactNumber < MAX_CONTACTS)
         ContactNumber++;
     return (true);
 }

@@ -3,11 +3,13 @@
 
 #include "./Contact.hpp"
 
+#define MAX_CONTACTS 8
+
 class   PhoneBook
 {
     private:
         std::string Input;
-        Contact     Contacts[8];
+        Contact     Contacts[MAX_CONTACTS];
         int         ContactNumber;
         int         ContactIndex;
 
@@ -20,6 +22,7 @@ class   PhoneBook
         void    ReplaceWhiteSpace(std::string& str, char replacement);
         bool    SetContact(Contact &Contact_Buffer);
         bool    AddContact();
+        bool    PrintTable();
         bool    FindContactInfo();
         void    Run();
 
