@@ -1,78 +1,51 @@
 #include "./PhoneBook.hpp"
 
-bool    AddContact(PhoneBook& Phone)
-{
-    Contact Contact_Buffer;
 
-    if (!Phone.readline("Entre Your First Name: ", Contact_Buffer.FirstName))
-        return (Phone.Error("Fail to Add First Name"));
-    if (!Phone.readline("Entre Your Last Name: ", Contact_Buffer.LastName))
-        return (Phone.Error("Fail to Add Last Name"));
-    if (!Phone.readline("Entre Your Nick Name: ", Contact_Buffer.NickName))
-        return (Phone.Error("Fail to Add F Nick Name"));
-    if (!Phone.readline("Entre Your Phone Number: ", Contact_Buffer.PhoneNumber))
-        return (Phone.Error("Fail to Add Phone Number"));
-    if (!Phone.readline("Entre Your Dark Secret: ", Contact_Buffer.DarkSecret))
-        return (Phone.Error("Fail to Add Dark Secret"));
-    if (Phone.ContactIndex >= 8)
-        Phone.ContactIndex = 0;
-    Phone.Contacts[Phone.ContactIndex++] = Contact_Buffer;
-    if (Phone.ContactNumber < 8)
-        Phone.ContactNumber++;
+int PhoneBook::Error(std::string ErrorMsg)
+{
+        std::cout << ErrorMsg << '\n';
+        return (false);
+}
+
+bool PhoneBook::readline(std:: string Prompt, std::string& Contact_Buffer)
+{
+    std::cout << (Prompt);
+    if (!std::getline(std::cin, Contact_Buffer))
+        return (false);
+    if (Contact_Buffer.empty())
+        return false;
     return (true);
 }
 
-bool    FindContactInfo(PhoneBook& Phone)
-{
-    int index;
 
-    if (Phone.ContactNumber == 0)
-        return(Phone.Error("No Contact To Display Or Search For\n"));
-    std::cout << "|  Index   | First Name | Last Name  | Nick Name  |\n";
-    std::cout << " -------------------------------------------------\n";
-    for (int i = 0; i < Phone.ContactNumber; i++)
+void    PhoneBook::ReplaceWhiteSpace(std::string& str, char replacement)
+{
+    for (int i = 0; i < str.length(); i++)
     {
-        std::cout << "|    " << i << "     | ";
-        Phone.print_ten_char(Phone.Contacts[i].FirstName);
-        std::cout << " | ";
-        Phone.print_ten_char(Phone.Contacts[i].LastName);
-        std::cout << " | ";
-        Phone.print_ten_char(Phone.Contacts[i].NickName);
-        std::cout << " |\n";
+        if (std::isspace(str[i]))
+            str[i] = replacement;
     }
-    if (!Phone.readline("Please Entre The Contact Index: ", Phone.Input))
-        return(Phone.Error("No Input\n"));
-    index = std::atoi(Phone.Input.c_str());
-    if (index > 8 || index < 0 || index >= Phone.ContactNumber || !Phone.IsNumber(Phone.Input))
-        return (Phone.Error("This Index Not Found!\n"));
-    else
-    {
-        std::cout << "Index : " << index << std::endl;
-        std::cout << "First Name : " << Phone.Contacts[index].FirstName << std::endl;
-        std::cout << "Last Name : " << Phone.Contacts[index].LastName << std::endl;
-        std::cout << "Nick Name : " << Phone.Contacts[index].NickName << std::endl;
-    }
-    return true;
 }
 
-int main(void)
+void    PhoneBook::print_ten_char(std::string& str)
 {
-    PhoneBook Phone;
+    std::string truncted;
 
-    std::string  prompt;
-
-    prompt = "Welcome to your phonebook\nwrite ADD to add contact\nWrite SEARCH  to find contact info\nWrite EXIT\n";
-    Phone.print(prompt);
-    while (true)
+    if (str.empty())
     {
-        Phone.readline("Choose Your Option? ", Phone.Input);
-        if (std::cin.eof())
-            break;
-        if (Phone.Input == "ADD")
-            AddContact(Phone);
-        else if (Phone.Input == "SEARCH")
-            FindContactInfo(Phone);
-        else if (Phone.Input == "EXIT")
-            return 0;
+        std::cout << std::setw(10);
+        return ;
     }
+    truncted = str.substr(0, 10);
+    ReplaceWhiteSpace(truncted, ' ');
+    if (truncted.length() == 10 && str.length() > 10)
+        truncted[9] = '.';
+    std::cout  << std::setw(10)<< truncted;
+}
+
+bool    PhoneBook::IsNumber(std::string& str)
+{
+    if (str.length() > 2 || !isdigit(str[0]))
+        return (false);
+    return true;
 }
