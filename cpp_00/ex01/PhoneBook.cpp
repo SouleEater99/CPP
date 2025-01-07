@@ -115,11 +115,31 @@ bool    PhoneBook::AddContact()
 {
     Contact Contact_Buffer;
 
-    SetContact(Contact_Buffer);
+    if (!SetContact(Contact_Buffer))
+        return false;
     if (ContactIndex >= 8)
         ContactIndex = 0;
     Contacts[ContactIndex++] = Contact_Buffer;
     if (ContactNumber < 8)
         ContactNumber++;
     return (true);
+}
+
+void    PhoneBook::Run()
+{
+    std::string  prompt;
+
+    prompt = "Welcome to your phonebook\nwrite ADD to add contact\nWrite SEARCH  to find contact info\nWrite EXIT\n";
+    std::cout << prompt; 
+    while (true)
+    {
+        if (!readline("Choose Your Option? ", Input) && !Input.empty())
+            return ;
+        if (Input == "ADD")
+            AddContact();
+        else if (Input == "SEARCH")
+            FindContactInfo();
+        else if (Input == "EXIT")
+            return ;
+    }
 }

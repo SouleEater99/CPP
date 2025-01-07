@@ -21,6 +21,7 @@ class   PhoneBook
         bool    SetContact(Contact &Contact_Buffer);
         bool    AddContact();
         bool    FindContactInfo();
+        void    Run();
 
 
     
