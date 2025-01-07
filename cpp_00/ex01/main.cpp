@@ -65,9 +65,8 @@ int main(void)
     std::cout << prompt; 
     while (true)
     {
-        Phone.readline("Choose Your Option? ", Phone.Input);
-        if (std::cin.eof())
-            break;
+        if (!Phone.readline("Choose Your Option? ", Phone.Input))
+            return (0);
         if (Phone.Input == "ADD")
             AddContact(Phone);
         else if (Phone.Input == "SEARCH")
