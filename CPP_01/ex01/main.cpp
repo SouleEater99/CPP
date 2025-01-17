@@ -5,15 +5,17 @@ int main()
 {
     std::string name;
     Zombie      *zombie;
+    int         hordeSize;
 
     name = "fifo";
-    zombie = zombieHorde(3, name);
+    hordeSize = 3;
+    zombie = zombieHorde(hordeSize, name);
     if (!zombie)
     {
         std::cerr << "Fail to Allocate to Zombies\n";
         return 1;
     }
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < hordeSize; i++)
         zombie[i].announce();
     delete[]  zombie;
 }
