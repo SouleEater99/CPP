@@ -1,7 +1,11 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror
-NAME = megaphone
-SRC =   ./megaphone.cpp
+NAME = zombie
+SRC =   ./main.cpp\
+		./newZombie.cpp\
+		./randomChump.cpp\
+		./Zombie.cpp
+
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
