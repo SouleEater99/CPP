@@ -1,27 +1,28 @@
 #include "./Zombie.hpp"
-
-
-// Zombie* newZombie(std::string name);
-// void    randomChump(std::string name);
+#include <iostream>
 
 int main()
 {
-    Zombie* first_zombie;
+    Zombie*     HeapZombie;
     std::string name;
 
     std::cout << "Entre Name of the first zombie: ";
-    std::cin >> name;
-    if (name.empty())
-        return (1);
-    first_zombie = newZombie(name);
-    first_zombie->announce();
-    std::cout << "Entre Name of the Second zombie: ";
-    std::cin >> name;
+    std::getline(std::cin, name);
     if (name.empty())
     {
-        delete first_zombie;
+        std::cerr << "Error Empty Name Entry\n";
         return (1);
     }
+    HeapZombie = newZombie(name);
+    HeapZombie->announce();
+    std::cout << "Entre Name of the Second zombie: ";
+    std::getline(std::cin, name);
+    if (name.empty())
+    {
+        delete HeapZombie;
+        std::cerr << "Error Empty Name Entry\n";
+        return (2);
+    }
     randomChump(name);
-    delete  first_zombie;
+    delete  HeapZombie;
 }
