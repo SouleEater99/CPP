@@ -1,10 +1,10 @@
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 NAME = zombie
 SRC =   ./main.cpp\
 		./newZombie.cpp\
-		./randomChump.cpp\
-		./Zombie.cpp
+		./Zombie.cpp\
+		./zombieHorde.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
