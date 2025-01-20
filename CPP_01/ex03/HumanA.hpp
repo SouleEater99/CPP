@@ -13,6 +13,7 @@ class   HumanA
         std::string getName(void) const;
         void        attack();
         HumanA(std::string Name, Weapon& weapon);
+        ~HumanA();
         
 };
 

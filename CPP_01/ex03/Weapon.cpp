@@ -8,4 +8,5 @@ Weapon::Weapon(std::string weapon_type) : type(weapon_type) {}
 
 Weapon::~Weapon()
 {
+    std::cout << "Weapon [" << type << "] is Destroyed\n";
 }
