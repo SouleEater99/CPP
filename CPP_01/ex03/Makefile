@@ -1,5 +1,5 @@
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = Human
 SRC =   ./main.cpp\
 		./Weapon.cpp\
@@ -21,3 +21,10 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+debug: CFLAGS += -g -fsanitize=address
+
+debug: re
+
+run: $(NAME)
+	./$(NAME)

@@ -2,14 +2,14 @@
 #include "./Weapon.hpp"
 #include <iostream>
 
-HumanB::HumanB(std::string Name, Weapon *weapon) : _name(Name), _weapon(weapon) {}
+HumanB::HumanB(const std::string& Name, Weapon *weapon) : _name(Name), _weapon(weapon) {}
 
 HumanB::~HumanB()
 {
     std::cout << "HumanB is Destroyed\n";
 }
 
-std::string HumanB::getName() const
+const std::string HumanB::getName() const
 {
     return _name;
 }
