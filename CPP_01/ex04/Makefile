@@ -1,7 +1,8 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
-NAME = Sed
+NAME = sed
 SRC =   ./main.cpp\
+		./MyFiles.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
