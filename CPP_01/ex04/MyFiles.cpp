@@ -8,7 +8,7 @@ MyFiles::~MyFiles()
     std::cout << "Object is Destroyed\n";
 }
 
-bool    MyFiles::checkFiles()
+bool    MyFiles::checkFiles() const
 {
     if (!_ReadFile.is_open())
     {
@@ -33,16 +33,18 @@ void    MyFiles::replaceAll()
 {
     int pos;
 
+    pos = 0;
     while (getline(_ReadFile, _Buffer))
     {
-        pos = _Buffer.find(_S1);
-        if (pos >= 0)
+        while (!_S1.empty() && (pos = _Buffer.find(_S1)) != std::string::npos)
         {
-            _Buffer.erase(pos, _S1.length());
-            _Buffer.insert(pos, _S2);
+            if (pos >= 0)
+            {
+                _Buffer.erase(pos, _S1.length());
+                _Buffer.insert(pos, _S2);
+            }
         }
         _FileReplace << _Buffer << std::endl;
-        std::cout << "pos: " << pos << "\nBuffer: " << _Buffer << std::endl;
     }
 }
 

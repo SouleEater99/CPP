@@ -18,3 +18,6 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+run : all
+	./$(NAME) $(FILE) $(S1) $(S2)
