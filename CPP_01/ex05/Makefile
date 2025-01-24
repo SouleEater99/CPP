@@ -1,7 +1,8 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
-NAME = Sed
+NAME = harl
 SRC =   ./main.cpp\
+		./Harl.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -17,3 +18,6 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+run: all
+	./$(NAME)
