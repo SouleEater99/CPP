@@ -20,9 +20,9 @@ void    Harl::error( void )
     std::cout << "This is unacceptable! I want to speak to the manager now.\n";    
 }
 
-int     Harl::getStringIndex(std::string& level)
+int     Harl::getStringIndex( const std::string& level ) const
 {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < _levelCount; i++)
     {
         if (_levels[i] == level)
             return (i);
@@ -32,37 +32,30 @@ int     Harl::getStringIndex(std::string& level)
 
 void    Harl::complain( std::string level )
 {
-    int     index;
+    void    (Harl::*_ptrToLevel)() = NULL;
 
-    index = getStringIndex(level);
-    std::cout << "index:" << index << std::endl;
-    switch (index)
+    switch (getStringIndex(level))
     {
         case 0:
-            ptrToLevel = &Harl::debug;
+            _ptrToLevel = &Harl::debug;
             break;
         case 1:
-            ptrToLevel = &Harl::info;
+            _ptrToLevel = &Harl::info;
             break;
         case 2:
-            ptrToLevel = &Harl::warning;
+            _ptrToLevel = &Harl::warning;
             break;
         case 3:
-            ptrToLevel = &Harl::error;
+            _ptrToLevel = &Harl::error;
             break;
         default:
-            std::cout << "This level Not Found\n";
+            std::cerr << "This level Not Found\n";
     }
-    this->ptrToLevel;
+    if (_ptrToLevel)
+        (this->*_ptrToLevel)();
 }
 
-Harl::Harl()
-{
-    _levels[0] = "debug";
-    _levels[1] = "info";
-    _levels[2] = "warning";
-    _levels[3] = "error";
-}
+Harl::Harl() : _levels{"debug", "info", "warning", "error"} {}
 
 Harl::~Harl()
 {

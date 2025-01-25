@@ -7,16 +7,16 @@
 class Harl
 {
 private:
-    std::string _levels[4];
+    static const int    _levelCount = 4;
+    std::string _levels[_levelCount];
     void debug( void );
     void info( void );
     void warning( void );
     void error( void );
 
 public:
-    void    (Harl::*ptrToLevel)();
     void complain( std::string level );
-    int  getStringIndex(std::string& level);
+    int  getStringIndex( const std::string& level) const ;
     Harl();
     ~Harl();
 };
