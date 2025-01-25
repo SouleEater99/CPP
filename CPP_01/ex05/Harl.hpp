@@ -9,6 +9,7 @@ class Harl
 private:
     static const int    _levelCount = 4;
     std::string _levels[_levelCount];
+    void    (Harl::*_ptrToLevels[_levelCount])();
     void debug( void );
     void info( void );
     void warning( void );
