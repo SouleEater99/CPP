@@ -5,7 +5,8 @@ MyFiles::MyFiles(const std::string& filename, const std::string& s1, const std::
 
 MyFiles::~MyFiles()
 {
-    std::cout << "Object is Destroyed\n";
+    closeFiles();
+    std::cout << "Files is Closed | Object is Destroyed\n";
 }
 
 bool    MyFiles::checkFiles() const
