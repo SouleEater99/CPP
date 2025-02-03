@@ -9,7 +9,7 @@ private:
     int _FixValue;
     static const int _FracBits = 8;
 public:
-    Fixed(int value);
+    Fixed();
     Fixed(Fixed& copy);
     Fixed   operator=(Fixed& copy);
     ~Fixed();
