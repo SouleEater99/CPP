@@ -14,7 +14,7 @@ Fixed::Fixed(const int value)
 Fixed::Fixed(const float value) 
 {
     std::cout << "Float constructor called" << std::endl;
-    _FixValue = value * (1 << _FracBits);
+    _FixValue = roundf(value * (1 << _FracBits));
 }
 
 Fixed::Fixed(const Fixed& copy)
@@ -49,7 +49,7 @@ void Fixed::setRawBits( int const raw )
 
 float   Fixed::toFloat( void ) const
 {
-    return _FixValue / (1 << _FracBits);
+    return (float)_FixValue / (1 << _FracBits);
 }
 
 
