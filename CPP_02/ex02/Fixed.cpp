@@ -64,42 +64,42 @@ std::ostream&    operator << (std::ostream& out, const Fixed& other)
     return out;
 }
 
-bool    Fixed::operator > (const Fixed& other)
+bool    Fixed::operator > (const Fixed& other) const
 {
     if (this->_FixValue > other._FixValue)
         return true;
     return false;
 }
 
-bool    Fixed::operator < (const Fixed& other)
+bool    Fixed::operator < (const Fixed& other) const
 {
     if (this->_FixValue < other._FixValue)
         return true;
     return false;
 }
 
-bool    Fixed::operator >= (const Fixed& other)
+bool    Fixed::operator >= (const Fixed& other) const
 {
     if (this->_FixValue >= other._FixValue)
         return true;
     return false;
 }
 
-bool    Fixed::operator <= (const Fixed& other)
+bool    Fixed::operator <= (const Fixed& other) const
 {
     if (this->_FixValue <= other._FixValue)
         return true;
     return false;
 }
 
-bool    Fixed::operator == (const Fixed& other)
+bool    Fixed::operator == (const Fixed& other) const
 {
     if (this->_FixValue == other._FixValue)
         return true;
     return false;
 }
 
-bool    Fixed::operator != (const Fixed& other)
+bool    Fixed::operator != (const Fixed& other) const
 {
     if (this->_FixValue != other._FixValue)
         return true;
@@ -109,20 +109,99 @@ bool    Fixed::operator != (const Fixed& other)
 
 Fixed  Fixed::operator + (const Fixed& other)
 {
-    return (Fixed(this->toFloat() + other.toFloat()));
+    return (Fixed(this->getRawBits() + other.getRawBits()));
 }
 
 Fixed  Fixed::operator - (const Fixed& other)
 {
-    return (Fixed(this->toFloat() - other.toFloat()));
+    return (Fixed(this->getRawBits() - other.getRawBits()));
 }
 
 Fixed  Fixed::operator * (const Fixed& other)
 {
-    return (Fixed(this->toFloat() * other.toFloat()));
+    Fixed       fixed;
+    long long   result;
+    int         new_raw;
+
+    result = (long long)this->getRawBits() * other.getRawBits();
+    new_raw = result >> this->_FracBits;
+
+    fixed.setRawBits(new_raw);
+    return (fixed);
 }
 
 Fixed  Fixed::operator / (const Fixed& other)
 {
-    return (Fixed(this->toFloat() / other.toFloat()));
+    Fixed       fixed;
+    long long   result;
+    int         new_raw;
+
+    if (other.getRawBits() == 0)
+    {
+        std::cerr << "Division by Zero\n";
+        return fixed;
+    }
+    result = (long long)this->getRawBits() << this->_FracBits;
+    new_raw = result / other.getRawBits();
+
+    fixed.setRawBits(new_raw);
+    return (fixed);
+}
+
+
+Fixed&   Fixed::operator ++ ()
+{
+    this->_FixValue += 1 << this->_FracBits;
+    return *this;
+}
+
+Fixed   Fixed::operator ++ (int)
+{
+    Fixed tmp(*this);
+
+    this->_FixValue += 1 << this->_FracBits;
+    return tmp;
+}
+
+Fixed&   Fixed::operator -- ()
+{
+    this->_FixValue -= 1 << this->_FracBits;
+    return *this;
+}
+
+Fixed   Fixed::operator -- (int)
+{
+    Fixed tmp(*this);
+
+    this->_FixValue -= 1 << this->_FracBits;
+    return tmp;
+}
+
+
+Fixed&  Fixed::min(Fixed& a, Fixed& b)
+{
+    if (a <= b)
+        return (a);
+    return b;
+}
+
+const Fixed&  Fixed::min(const Fixed& a, const Fixed& b)
+{
+    if (a <= b)
+        return (a);
+    return b;
+}
+
+Fixed&  Fixed::max(Fixed& a, Fixed& b)
+{
+    if (a >= b)
+        return (a);
+    return b;
+}
+
+const Fixed&  Fixed::max(const Fixed& a, const Fixed& b)
+{
+    if (a >= b)
+        return (a);
+    return b;
 }
