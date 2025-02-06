@@ -151,7 +151,7 @@ Fixed  Fixed::operator / (const Fixed& other)
 
 Fixed&   Fixed::operator ++ ()
 {
-    this->_FixValue += 1 << this->_FracBits;
+    this->_FixValue++;
     return *this;
 }
 
@@ -159,13 +159,13 @@ Fixed   Fixed::operator ++ (int)
 {
     Fixed tmp(*this);
 
-    this->_FixValue += 1 << this->_FracBits;
+    this->_FixValue++;
     return tmp;
 }
 
 Fixed&   Fixed::operator -- ()
 {
-    this->_FixValue -= 1 << this->_FracBits;
+    this->_FixValue--;
     return *this;
 }
 
@@ -173,7 +173,7 @@ Fixed   Fixed::operator -- (int)
 {
     Fixed tmp(*this);
 
-    this->_FixValue -= 1 << this->_FracBits;
+    this->_FixValue--;
     return tmp;
 }
 
