@@ -107,17 +107,17 @@ bool    Fixed::operator != (const Fixed& other) const
 }
 
 
-Fixed  Fixed::operator + (const Fixed& other)
+Fixed  Fixed::operator + (const Fixed& other) const
 {
     return (Fixed(this->getRawBits() + other.getRawBits()));
 }
 
-Fixed  Fixed::operator - (const Fixed& other)
+Fixed  Fixed::operator - (const Fixed& other) const
 {
     return (Fixed(this->getRawBits() - other.getRawBits()));
 }
 
-Fixed  Fixed::operator * (const Fixed& other)
+Fixed  Fixed::operator * (const Fixed& other) const
 {
     Fixed       fixed;
     long long   result;
@@ -130,7 +130,7 @@ Fixed  Fixed::operator * (const Fixed& other)
     return (fixed);
 }
 
-Fixed  Fixed::operator / (const Fixed& other)
+Fixed  Fixed::operator / (const Fixed& other) const
 {
     Fixed       fixed;
     long long   result;
