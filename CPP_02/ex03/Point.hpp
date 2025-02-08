@@ -15,8 +15,8 @@ public:
     Point(const Point& other);
     Point&  operator = (const Point& other);
     ~Point();
+    Fixed get_triangle_area( Point const a, Point const b, Point const c ) const;
     bool bsp( Point const a, Point const b, Point const c, Point const point);
-    int get_triangle_area( Point const a, Point const b, Point const c );
 };
 
 

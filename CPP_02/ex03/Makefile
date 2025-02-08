@@ -1,8 +1,9 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
-NAME = fixed
+NAME = bsp
 SRC =   ./main.cpp\
-		./Fixed.cpp
+		./Fixed.cpp\
+		./Point.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
