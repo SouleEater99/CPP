@@ -1,8 +1,8 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
-NAME = fixed
+NAME = ClapTrap
 SRC =   ./main.cpp\
-		./Fixed.cpp
+		./ClapTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
