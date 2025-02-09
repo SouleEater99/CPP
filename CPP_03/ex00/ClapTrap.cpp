@@ -2,22 +2,22 @@
 
 ClapTrap::ClapTrap(): _Name("Default"), _HitPoits(10), _EnergyPoints(10), _AttackDamage(0)
 {
-    // std::cout << "Default Constructor Called\n";
+    std::cout << "Default Constructor Called\n";
 }
 
 ClapTrap::ClapTrap(const std::string& name): _Name(name), _HitPoits(10), _EnergyPoints(10), _AttackDamage(0)
 {
-    // std::cout << "Parameterized Constructor Called\n";
+    std::cout << "Parameterized Constructor Called\n";
 }
 
 ClapTrap::ClapTrap(ClapTrap& other): _Name(other._Name), _HitPoits(other._HitPoits), _EnergyPoints(other._EnergyPoints), _AttackDamage(other._AttackDamage)
 {
-    // std::cout << "Copy Constructor Called\n";
+    std::cout << "Copy Constructor Called\n";
 }
 
 ClapTrap::~ClapTrap()
 {
-    // std::cout << "Destructor Called\n";
+    std::cout << "Destructor Called\n";
 }
 
 ClapTrap&  ClapTrap::operator = (const ClapTrap& other)
@@ -49,6 +49,7 @@ void       ClapTrap::takeDamage(unsigned int amount)
             _HitPoits = 0;
         else
             _HitPoits -= amount;
+        _HitPoits =  _HitPoits < 0 ? 0 : _HitPoits;
         std::cout << "ClapTrap " << _Name << " Take Damage causing " << amount << " hit points now is " <<  _HitPoits  << std::endl;
     }
     else
@@ -66,8 +67,8 @@ void       ClapTrap::beRepaired(unsigned int amount)
         _EnergyPoints--;
         std::cout << "ClapTrap " << _Name << " repaired, Hit Points now is " << _HitPoits << std::endl;
     }
-    // else
-    //     std::cout << (_HitPoits > 0) ? "No Enough Enegry Points \n" : "Already Dead\n" ;
+    else
+        std::cout << (_HitPoits > 0 ? "No Enough Enegry Points \n" : "Already Dead\n") ;
 }
 
 
