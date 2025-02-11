@@ -5,8 +5,8 @@
 
 class ScavTrap : virtual public ClapTrap
 {
-private:
-    /* data */
+protected:
+    int    _EnergyPoints;
 public:
     ScavTrap();
     ScavTrap(const std::string& name);

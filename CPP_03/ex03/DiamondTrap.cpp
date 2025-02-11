@@ -51,11 +51,18 @@ void    DiamondTrap::attack(const std::string& name)
 
 void    DiamondTrap::print_all_variables()
 {
+    std::cout << "+++++++++++++++ { DiamondTrap Status } ++++++++++++++++\n";
     std::cout << "CarlTrap _Name : " << ClapTrap::_Name << std::endl;
     std::cout << "DiamondTrap _Name : " << DiamondTrap::_Name << std::endl;
     std::cout << "_HitPoits (FragTrap) : " << _HitPoits << std::endl;
     std::cout << "_EnergyPoints (ScavTrap) : " << _EnergyPoints << std::endl;
-    std::cout << "_AttackDamage (FragTrap) : " << _AttackDamage << std::endl;
+    std::cout << "_AttackDamage (FragTrap) : " << _HitPoits << std::endl;
+
+    std::cout << "+++++++++++++++ { ClapTrap Status } ++++++++++++++++\n";
+    std::cout << "DiamondTrap _Name (ClapTrap::) : " << ClapTrap::_Name << std::endl;
+    std::cout << "_HitPoits (ClapTrap::) : " << ClapTrap::_HitPoits << std::endl;
+    std::cout << "_EnergyPoints (ClapTrap::) : " << ClapTrap::_EnergyPoints << std::endl;
+    std::cout << "_AttackDamage (ClapTrap::) : " << ClapTrap::_HitPoits << std::endl;
 }
 
 
