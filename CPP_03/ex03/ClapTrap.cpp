@@ -10,7 +10,7 @@ ClapTrap::ClapTrap(const std::string& name): _Name(name), _HitPoits(10), _Energy
     std::cout << "ClapTrap Parameterized Constructor for " << name << " Called\n";
 }
 
-ClapTrap::ClapTrap(ClapTrap& other): _Name(other._Name), _HitPoits(other._HitPoits), _EnergyPoints(other._EnergyPoints), _AttackDamage(other._AttackDamage)
+ClapTrap::ClapTrap(const ClapTrap& other): _Name(other._Name), _HitPoits(other._HitPoits), _EnergyPoints(other._EnergyPoints), _AttackDamage(other._AttackDamage)
 {
     std::cout << "ClapTrap Copy Constructor Called\n";
 }
@@ -70,5 +70,3 @@ void       ClapTrap::beRepaired(unsigned int amount)
     else
         std::cout << (_HitPoits > 0 ? "No Enough Enegry Points \n" : "Already Dead\n") ;
 }
-
-

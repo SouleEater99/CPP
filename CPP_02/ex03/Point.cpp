@@ -40,13 +40,6 @@ bool Point::bsp( Point const a, Point const b, Point const c, Point const point)
     pab = point.get_triangle_area(point, a, b);
     pac = point.get_triangle_area(point, a, c);
     pbc = point.get_triangle_area(point, b, c);
-    std::cout << "abc : "<< abc << std::endl;
-    std::cout << "pab : "<< pab << std::endl;
-    std::cout << "pac : "<< pac << std::endl;
-    std::cout << "pbc : "<< pbc << std::endl;
-    Fixed res = pab  + pbc + pac;
-    std::cout << "all = " << res << std::endl;
-    std::cout << "epsilon = " << epsilon << std::endl;
     if (pab < epsilon || pbc < epsilon || pac < epsilon)
         return false;
     return ((pab + pac + pbc) == abc);

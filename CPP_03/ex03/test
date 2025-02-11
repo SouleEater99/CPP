@@ -1,0 +1,17 @@
+FragTrap::FragTrap(const std::string& name):  ClapTrap(name)
+{
+    std::cout << FragTrap Parameterized Constructor for  << name <<  Calledn;
+    _HitPoits = 100;
+    _EnergyPoints = 100;
+    _AttackDamage = 30;
+}
+
+ScavTrap::ScavTrap(const std::string& name):  ClapTrap(name)
+{
+    std::cout << ScavTrap Parameterized Constructor for  << name <<  Calledn;
+    _HitPoits = 100;
+    _EnergyPoints = 50;
+    _AttackDamage = 20;
+}
+
+ClapTrap::ClapTrap(): _Name(Default), _HitPoits(10), _EnergyPoints(10), _AttackDamage(0)
