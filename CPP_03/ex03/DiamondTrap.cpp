@@ -56,13 +56,20 @@ void    DiamondTrap::print_all_variables()
     std::cout << "DiamondTrap _Name : " << DiamondTrap::_Name << std::endl;
     std::cout << "_HitPoits (FragTrap) : " << _HitPoits << std::endl;
     std::cout << "_EnergyPoints (ScavTrap) : " << _EnergyPoints << std::endl;
-    std::cout << "_AttackDamage (FragTrap) : " << _HitPoits << std::endl;
+    std::cout << "_AttackDamage (FragTrap) : " << _HitPoits << std::endl << std::endl;
 
     std::cout << "+++++++++++++++ { ClapTrap Status } ++++++++++++++++\n";
-    std::cout << "DiamondTrap _Name (ClapTrap::) : " << ClapTrap::_Name << std::endl;
+    std::cout << "ClapTrap Name (ClapTrap::) : " << ClapTrap::_Name << std::endl;
     std::cout << "_HitPoits (ClapTrap::) : " << ClapTrap::_HitPoits << std::endl;
     std::cout << "_EnergyPoints (ClapTrap::) : " << ClapTrap::_EnergyPoints << std::endl;
-    std::cout << "_AttackDamage (ClapTrap::) : " << ClapTrap::_HitPoits << std::endl;
+    std::cout << "_AttackDamage (ClapTrap::) : " << ClapTrap::_HitPoits << std::endl << std::endl;
+
+    std::cout << "+++++++++++++++ { FragTrap Status } ++++++++++++++++\n";
+    std::cout << "_HitPoits (FragTrap::) : " << FragTrap::_HitPoits << std::endl;
+    std::cout << "_AttackDamage (FragTrap::) : " << FragTrap::_HitPoits << std::endl << std::endl;
+    
+    std::cout << "+++++++++++++++ { ScavTrap Status } ++++++++++++++++\n";
+    std::cout << "_EnergyPoints (ScavTrap::) : " << ScavTrap::_EnergyPoints << std::endl;
 }
 
 
