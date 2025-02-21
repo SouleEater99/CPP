@@ -28,7 +28,7 @@ std::string const &AMateria::getType() const
 
 void AMateria::use(ICharacter &target)
 {
-
+    std::cout << "You Hane no Materia to use\n";
 }
 
 AMateria::~AMateria()
