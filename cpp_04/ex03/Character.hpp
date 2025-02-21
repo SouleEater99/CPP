@@ -7,6 +7,7 @@ class Character
 {
 private:
     std::string _name;
+    AMateria    *_invetory[4] = {NULL};
 public:
     Character();
     Character(const std::string& name);
