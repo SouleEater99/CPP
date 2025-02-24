@@ -2,12 +2,19 @@
 
 Character::Character() : _name("Abdelali"), _inv_size(0)
 {
-
+    for (int i = 0; i < 4; ++i)
+        _invetory[i] = NULL;
+    for (int i = 0; i < 100; ++i)
+        _addr_saver[i] = NULL;
     std::cout << "Character: Default Constructor Called\n";
 }
 
 Character::Character(const std::string &name) : _name(name), _inv_size(0)
 {
+    for (int i = 0; i < 4; ++i)
+        _invetory[i] = NULL;
+    for (int i = 0; i < 100; ++i)
+        _addr_saver[i] = NULL;
     std::cout << "Character: Parametrized Constructor Called\n";
 }
 

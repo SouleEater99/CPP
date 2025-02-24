@@ -1,7 +1,7 @@
 #include "AMateria.hpp"
 
 
-AMateria::AMateria(): _type("")
+AMateria::AMateria(): _type("Magic")
 {
     std::cout << "AMateria: Default Constructor Called\n";
 }
@@ -29,7 +29,7 @@ std::string const &AMateria::getType() const
 
 void AMateria::use(ICharacter &target)
 {
-    std::cout << "You Hane no Materia to use\n";
+    std::cout << "Hit the target " << target.getName() << "by " << _type << "\n";
 }
 
 AMateria::~AMateria()
