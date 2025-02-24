@@ -18,6 +18,7 @@ Ice::~Ice()
 Ice&       Ice::operator = (const Ice& other)
 {
     this->_type = other._type;
+    return *this;
 }
 
 AMateria    *Ice::clone() const

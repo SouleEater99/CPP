@@ -1,19 +1,17 @@
 #include "./Character.hpp"
 
-Character::Character(): _name("Abdelali"), _inv_size(0)
+Character::Character() : _name("Abdelali"), _inv_size(0)
 {
 
     std::cout << "Character: Default Constructor Called\n";
 }
 
-
-Character::Character(const std::string& name): _name(name), _inv_size(0)
+Character::Character(const std::string &name) : _name(name), _inv_size(0)
 {
     std::cout << "Character: Parametrized Constructor Called\n";
 }
 
-
-Character::Character(const Character& other): _name(other._name)
+Character::Character(const Character &other) : _name(other._name)
 {
     for (int i = 0; i < 4; i++)
     {
@@ -29,10 +27,11 @@ Character::Character(const Character& other): _name(other._name)
 
 Character::~Character()
 {
+    clear_addr();
     std::cout << "Character: Destructor Called\n";
 }
 
-Character&  Character::operator=(const Character& other)
+Character &Character::operator=(const Character &other)
 {
     this->_name = other._name;
     for (int i = 0; i < 4; i++)
@@ -44,9 +43,10 @@ Character&  Character::operator=(const Character& other)
         }
     }
     this->_inv_size = other._inv_size;
+    return (*this);
 }
 
-std::string const    &Character::getName() const
+std::string const &Character::getName() const
 {
     return (_name);
 }
@@ -55,12 +55,18 @@ void Character::equip(AMateria *m)
 {
     if (_inv_size >= 4)
         std::cout << "Inventory is Full(use unequip method to get a place)\n";
+    else if (!m)
+        std::cout << "AMateria Not found (NULL)\n";
     else
     {
-        if (m)
+        for (int i = 0; i < 4 ; i++)
         {
-            _invetory[_inv_size++] = m;
-            std::cout << m->getType() << " is equiped\n";
+            if (_invetory[i] == NULL)
+            {
+                _invetory[i] = m;
+                std::cout << m->getType() << " is equiped\n";
+                break;
+            }
         }
     }
 }
@@ -70,18 +76,20 @@ void Character::unequip(int idx)
     if (_inv_size == 0)
         std::cout << "There is nothing in the Inventory\n";
     else if (idx >= 0 && idx <= 3)
-        _invetory[idx] = NUll
-
+        _invetory[idx] = NULL;
+    else
+        std::cout << "This index not found in Inventory\n";
+        
 }
-
 
 void Character::use(int idx, ICharacter &target)
 {
-
-    
+    if (idx >= 0 && idx <= 3)
+        if (_invetory[idx])
+            _invetory[idx]->use(target);
 }
 
-void Character::set_addr(AMateria* addr)
+void Character::set_addr(AMateria *addr)
 {
     int i;
 
@@ -94,9 +102,7 @@ void Character::set_addr(AMateria* addr)
         i = 0;
     }
     _addr_saver[i] = addr;
-
 }
-
 
 void Character::clear_addr()
 {
