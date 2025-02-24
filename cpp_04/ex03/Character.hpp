@@ -1,9 +1,10 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
+#include "./ICharacter.hpp"
 #include "./AMateria.hpp"
 
-class Character
+class Character : public ICharacter
 {
 private:
     std::string _name;
