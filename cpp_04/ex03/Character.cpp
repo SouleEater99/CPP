@@ -6,7 +6,7 @@ Character::Character() : _name("Abdelali"), _inv_size(0)
         _inventory[i] = NULL;
     for (int i = 0; i < 100; ++i)
         _addr_saver[i] = NULL;
-    std::cout << "Character: Default Constructor Called\n";
+    // std::cout << "Character: Default Constructor Called\n";
 }
 
 Character::Character(const std::string &name) : _name(name), _inv_size(0)
@@ -15,7 +15,7 @@ Character::Character(const std::string &name) : _name(name), _inv_size(0)
         _inventory[i] = NULL;
     for (int i = 0; i < 100; ++i)
         _addr_saver[i] = NULL;
-    std::cout << "Character: Parametrized Constructor Called\n";
+    // std::cout << "Character: Parametrized Constructor Called\n";
 }
 
 Character::Character(const Character &other) : _name(other._name)
@@ -23,21 +23,16 @@ Character::Character(const Character &other) : _name(other._name)
     for (int i = 0; i < 4; i++)
     {
         if (other._inventory[i])
-        {
             this->_inventory[i] = other._inventory[i]->clone();
-            this->set_addr(this->_inventory[i]);
-        }
     }
     this->_inv_size = other._inv_size;
-    std::cout << "Character: Copy Constructor Called\n";
+    // std::cout << "Character: Copy Constructor Called\n";
 }
 
 Character::~Character()
 {
     clear_addr();
-    for (int i = 0; i < 4; i++)
-        delete _inventory[i];
-    std::cout << "Character: Destructor Called\n";
+    // std::cout << "Character: Destructor Called\n";
 }
 
 Character &Character::operator=(const Character &other)
@@ -46,10 +41,7 @@ Character &Character::operator=(const Character &other)
     for (int i = 0; i < 4; i++)
     {
         if (other._inventory[i])
-        {
             this->_inventory[i] = other._inventory[i]->clone();
-            this->set_addr(this->_inventory[i]);
-        }
     }
     this->_inv_size = other._inv_size;
     return (*this);
@@ -73,6 +65,7 @@ void Character::equip(AMateria *m)
             if (_inventory[i] == NULL)
             {
                 _inventory[i] = m;
+                set_addr(m);
                 std::cout << m->getType() << " is equiped\n";
                 break;
             }
@@ -85,7 +78,11 @@ void Character::unequip(int idx)
     if (_inv_size == 0)
         std::cout << "There is nothing in the Inventory\n";
     else if (idx >= 0 && idx <= 3)
+    {
+        if (_inventory[idx])
+            set_addr(_inventory[idx]);
         _inventory[idx] = NULL;
+    }
     else
         std::cout << "This index not found in Inventory\n";
         

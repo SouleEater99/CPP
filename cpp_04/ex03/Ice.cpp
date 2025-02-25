@@ -2,12 +2,12 @@
 
 Ice::Ice(): AMateria("ice")
 {
-    std::cout << "Ice: Default Constructor Called\n";
+    // std::cout << "Ice: Default Constructor Called\n";
 }
 
 Ice::Ice(const Ice& other): AMateria(other)
 {
-    std::cout << "Ice: Copy Constructor Called\n";
+    // std::cout << "Ice: Copy Constructor Called\n";
 }
 
 Ice::~Ice()

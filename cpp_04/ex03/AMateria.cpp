@@ -3,17 +3,17 @@
 
 AMateria::AMateria(): _type("Magic")
 {
-    std::cout << "AMateria: Default Constructor Called\n";
+    // std::cout << "AMateria: Default Constructor Called\n";
 }
 
 AMateria::AMateria(std::string const &type): _type(type)
 {
-    std::cout << "AMateria: Parametrized Constructor Called\n";
+    // std::cout << "AMateria: Parametrized Constructor Called\n";
 }
 
 AMateria::AMateria(const AMateria& other): _type(other._type)
 {
-    std::cout << "AMateria: Copy Constructor Called\n";
+    // std::cout << "AMateria: Copy Constructor Called\n";
 }
 
 AMateria&   AMateria::operator = (const AMateria& other)

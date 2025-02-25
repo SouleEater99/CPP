@@ -4,14 +4,14 @@ MateriaSource::MateriaSource(): _src_size(0)
 {
     for (int i = 0; i < 4; ++i)
         _src_store[i] = NULL;
-    std::cout << "MateriaSource Default Constructor Called\n";
+    // std::cout << "MateriaSource Default Constructor Called\n";
 }
 
 MateriaSource::MateriaSource(const MateriaSource& other): _src_size(0)
 {
     for (int i = 0; i < 4; ++i)
         _src_store[i] = other._src_store[i]->clone();
-    std::cout << "MateriaSource Copy Constructor Called\n";
+    // std::cout << "MateriaSource Copy Constructor Called\n";
 }
 
 MateriaSource::~MateriaSource()
@@ -21,7 +21,7 @@ MateriaSource::~MateriaSource()
         if (_src_store[i])
             delete _src_store[i];
     }
-    std::cout << "MateriaSource Destructor Called\n";
+    // std::cout << "MateriaSource Destructor Called\n";
 }
 
 MateriaSource&  MateriaSource::operator = (const MateriaSource& other)
