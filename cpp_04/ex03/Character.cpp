@@ -73,6 +73,7 @@ void Character::equip(AMateria *m)
                 _inventory[i] = m;
                 set_addr(m);
                 std::cout << m->getType() << " is equiped\n";
+                _inv_size++;
                 break;
             }
         }
@@ -86,8 +87,11 @@ void Character::unequip(int idx)
     else if (idx >= 0 && idx <= 3)
     {
         if (_inventory[idx])
+        {
             set_addr(_inventory[idx]);
-        _inventory[idx] = NULL;
+            _inventory[idx] = NULL;
+            _inv_size--;
+        }
     }
     else
         std::cout << "This index not found in Inventory\n";
@@ -97,8 +101,15 @@ void Character::unequip(int idx)
 void Character::use(int idx, ICharacter &target)
 {
     if (idx >= 0 && idx <= 3)
+    {
         if (_inventory[idx])
             _inventory[idx]->use(target);
+        else
+            std::cout << "There Is Nothing In Inventory[" << idx << "]\n";
+    }
+    else 
+        std::cout << "This Index Is Not Valid\n";
+    
 }
 
 void Character::set_addr(AMateria *addr)

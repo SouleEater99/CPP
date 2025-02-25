@@ -44,7 +44,20 @@ AMateria*       tmp2 = new Cure();
 ICharacter*     person = new Character("ali");
 
 for (int i = 0; i < 4; i++)
+{
     person->equip(tmp2);
+    person->unequip(3);
+}
+
+std::cout << "++++++++++ { testing enquipe is cross the limit for grabage collector } +++++++++++\n";
+
+
+for (int i = 0; i < 80; i++)
+{
+    person->equip(src->createMateria("ice"));
+    person->unequip(0);
+}
+
 
 
 
