@@ -2,11 +2,15 @@
 
 MateriaSource::MateriaSource(): _src_size(0)
 {
+    for (int i = 0; i < 4; ++i)
+        _src_store[i] = NULL;
     std::cout << "MateriaSource Default Constructor Called\n";
 }
 
 MateriaSource::MateriaSource(const MateriaSource& other): _src_size(0)
 {
+    for (int i = 0; i < 4; ++i)
+        _src_store[i] = other._src_store[i]->clone();
     std::cout << "MateriaSource Copy Constructor Called\n";
 }
 
@@ -28,7 +32,7 @@ MateriaSource&  MateriaSource::operator = (const MateriaSource& other)
         if (other._src_store[i])
             this->_src_store[i] = other._src_store[i]->clone();
     }
-
+    return *this;
 }
 
 void MateriaSource::learnMateria(AMateria *m)

@@ -2,12 +2,14 @@
 #define CHARACTER_HPP
 
 #include "./ICharacter.hpp"
+#include "./AMateria.hpp"
+#include <iostream>
 
 class Character : public ICharacter
 {
 private:
     std::string _name;
-    AMateria    *_invetory[4];
+    AMateria    *_inventory[4];
     AMateria    *_addr_saver[100];
     int         _inv_size; 
 public:
