@@ -60,6 +60,5 @@ AMateria *MateriaSource::createMateria(std::string const &type)
         if (_src_store[i]->getType() == type)
             return _src_store[i]->clone();
     }
-    std::cout << "This Materia type not Found In our Source Inventory\n";
     return 0;
 }

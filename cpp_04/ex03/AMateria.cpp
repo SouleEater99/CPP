@@ -34,5 +34,5 @@ void AMateria::use(ICharacter &target)
 
 AMateria::~AMateria()
 {
-    std::cout << "AMateria: Destructor Called\n";
+    // std::cout << "AMateria: Destructor Called\n";
 }

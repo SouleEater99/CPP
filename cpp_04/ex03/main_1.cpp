@@ -2,28 +2,53 @@
 #include "./MateriaSource.hpp"
 #include "./Cure.hpp"
 #include "./Ice.hpp"
-#define MATERIA_LEARN 10
-
 
 int main()
 {
-AMateria*       tmp[MATERIA_LEARN];
-ICharacter*     me = new Character("me");
+AMateria        *tmp;
+Character*     me = new Character("me");
 IMateriaSource* src = new MateriaSource();
 
-for (int i = 0; i < MATERIA_LEARN; i++)
+for (int i = 0; i < 4; i++)
 {
     if (i % 2 == 0)
-        tmp[i] = new Ice();
+        tmp = new Ice();
     else
-        tmp[i] = new Cure();
-    src->learnMateria(tmp[i]);
-    std::cout << "=========\n";
-    me->equip(tmp[i]);
-    me->use(0, *me);
+        tmp = new Cure();
+    src->learnMateria(tmp);
+}
+for (int i = 0; i < 4; i++)
+{
+    if (i % 2 == 0)
+        me->equip(src->createMateria("ice"));
+    else
+        me->equip(src->createMateria("cure"));
+    me->use(i, *me);
 }
 
+std::cout << "++++++++++ { testing copy assignment and copt constructor } +++++++++++\n";
 
+Character who = *me;
+Character who_2(*me);
+std::cout << "Who Name: " << who.getName() << std::endl;
+who.equip(NULL);
+who.use(0 ,*me);
+std::cout << "Who Name: " << who_2.getName() << std::endl;
+who_2.equip(NULL);
+who_2.use(0 ,*me);
+
+
+std::cout << "++++++++++ { testing the same addree if it will handle the same address } +++++++++++\n";
+
+AMateria*       tmp2 = new Cure();
+ICharacter*     person = new Character("ali");
+
+for (int i = 0; i < 4; i++)
+    person->equip(tmp2);
+
+
+
+delete person;
 delete me;
 delete src;
 return 0;

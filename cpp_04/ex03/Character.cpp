@@ -23,7 +23,10 @@ Character::Character(const Character &other) : _name(other._name)
     for (int i = 0; i < 4; i++)
     {
         if (other._inventory[i])
+        {
             this->_inventory[i] = other._inventory[i]->clone();
+            this->set_addr(this->_inventory[i]);
+        }
     }
     this->_inv_size = other._inv_size;
     // std::cout << "Character: Copy Constructor Called\n";
@@ -41,7 +44,10 @@ Character &Character::operator=(const Character &other)
     for (int i = 0; i < 4; i++)
     {
         if (other._inventory[i])
+        {
             this->_inventory[i] = other._inventory[i]->clone();
+            this->set_addr(this->_inventory[i]);
+        }
     }
     this->_inv_size = other._inv_size;
     return (*this);
@@ -114,7 +120,13 @@ void Character::clear_addr()
 {
     for (int i = 0; i < 100; i++)
     {
-        delete _addr_saver[i];
+        if (_addr_saver[i])
+        {
+            for (int j = i + 1; j < 100; j++)
+                if (_addr_saver[i] == _addr_saver[j])
+                    _addr_saver[j] = NULL;
+            delete _addr_saver[i];
+        }
         _addr_saver[i] = NULL;
     }
 }
