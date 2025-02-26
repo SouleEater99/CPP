@@ -5,25 +5,19 @@
 
 int main()
 {
-    Ice ice;
-    Ice p(ice);
-    
-    p = ice;
-    Character a;
-    Character b;
+    AMateria* ice = new Ice();
+    AMateria* p = new Cure();
 
-    a = b;
-    AMateria& materia = ice;
+    *p = *ice;
 
-    AMateria&  materia_2 = ice;
-
-    std::cout << "materia : "  << materia.getType() <<  std::endl;
-    std::cout << "materia_2 : "  << materia_2.getType() <<  std::endl;
+    std::cout << "ice : "  << ice->getType() <<  std::endl;
+    std::cout << "p : "  << p->getType() <<  std::endl;
 
 
 
 
-
+delete  ice;
+delete  p;
 
 
 return 0;

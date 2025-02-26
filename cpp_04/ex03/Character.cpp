@@ -123,13 +123,13 @@ void Character::set_addr(AMateria *addr)
 
 void Character::clear_addr()
 {
-    std::cout << "+++++++++++++++ Freeing Mode ++++++++++++++++\n";
+    // std::cout << "+++++++++++++++ Freeing Mode ++++++++++++++++\n";
     for (int i = 0; i < 100; i++)
     {
         for (int k = 0; k < 4 && _addr_saver[i]; k++)
             if (_addr_saver[i] == _inventory[k])
                 _addr_saver[i] = NULL;
-        std::cout << "{" << this->getName() << "} : address[" << i << "] : " << _addr_saver[i] << "\n";
+        // std::cout << "{" << this->getName() << "} : address[" << i << "] : " << _addr_saver[i] << "\n";
         if (_addr_saver[i])
         {
             for (int j = i + 1; j < 100; j++)
