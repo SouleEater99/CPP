@@ -1,7 +1,7 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 NAME = Character
-SRC =   ./main_3.cpp\
+SRC =   ./main_4.cpp\
 		./AMateria.cpp\
 		./Cure.cpp\
 		./Ice.cpp\

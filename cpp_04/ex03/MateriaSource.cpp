@@ -26,11 +26,17 @@ MateriaSource::~MateriaSource()
 
 MateriaSource&  MateriaSource::operator = (const MateriaSource& other)
 {
+    if (this == &other)
+        return *this;
     this->_src_size = other._src_size;
     for (int i = 0; i < 4; i++)
     {
+        if (this->_src_store[i])
+            delete this->_src_store[i];
         if (other._src_store[i])
             this->_src_store[i] = other._src_store[i]->clone();
+        else
+            this->_src_store[i] = NULL;
     }
     return *this;
 }

@@ -19,6 +19,10 @@ Cat::~Cat()
 
 Cat& Cat::operator = (const Cat& other)
 {
+    if (this == &other)
+        return *this;
+    if (this->_Brain)
+        delete this->_Brain;
     this->type = other.type;
     return *this;
 }

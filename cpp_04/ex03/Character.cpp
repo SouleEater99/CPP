@@ -31,11 +31,17 @@ Character::Character(const Character &other) : _name(other._name)
 
 Character &Character::operator=(const Character &other)
 {
+    if (this == &other)
+        return *this;
     this->_name = other._name;
     for (int i = 0; i < 4; i++)
     {
+        if (this->_inventory[i])
+            delete _inventory[i];
         if (other._inventory[i])
             this->_inventory[i] = other._inventory[i]->clone();
+        else
+            this->_inventory[i] = NULL;
     }
     this->_inv_size = other._inv_size;
     return (*this);
