@@ -1,4 +1,5 @@
 #include "./PhoneBook.hpp"
+#include <cstdlib>
 
 PhoneBook::PhoneBook()
 {
@@ -47,7 +48,7 @@ bool PhoneBook::SetContact(Contact& Contact_Buffer)
 
 void PhoneBook::ReplaceWhiteSpace(std::string &str, char replacement)
 {
-    for (int i = 0; i < str.length(); i++)
+    for (int i = 0; i < (int)str.length(); i++)
     {
         if (std::isspace(str[i]))
             str[i] = replacement;
@@ -72,7 +73,7 @@ void PhoneBook::print_ten_char(const std::string &str)
 
 bool PhoneBook::IsNumber(std::string &str)
 {
-    for (int i = 0; i < str.length(); i++)
+    for (int i = 0; i < (int)str.length(); i++)
         if (!std::isdigit(str[i]))
             return false;
     return true;
@@ -87,7 +88,7 @@ bool    PhoneBook::PrintTable()
     for (int i = 0; i < ContactNumber; i++)
     {
 
-        std::cout << "|    " << i << "     | ";
+        std::cout << "|" << std::setw(10) << i << "| ";
         print_ten_char(Contacts[i].GetFirstName());
         std::cout << " | ";
         print_ten_char(Contacts[i].GetLastName());
@@ -101,7 +102,6 @@ bool    PhoneBook::PrintTable()
 bool    PhoneBook::FindContactInfo()
 {
     int     index;
-    char    *str;
 
     if (!PrintTable())
         return false;

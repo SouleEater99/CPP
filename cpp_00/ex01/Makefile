@@ -1,5 +1,5 @@
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = c++
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = phonebook
 SRC =   ./PhoneBook.cpp\
 		./Contact.cpp\
@@ -9,7 +9,7 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -I./ -o $(NAME)
+	$(CXX) $(CPPFLAGS) $(OBJ) -I./ -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)
