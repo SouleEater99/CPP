@@ -18,5 +18,6 @@ int main(int ac, char **av)
             i++;
         }
     }
+
     std::cout << "\n";
 }
