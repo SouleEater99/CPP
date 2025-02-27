@@ -24,6 +24,7 @@ class   PhoneBook
         bool    AddContact();
         bool    PrintTable();
         bool    FindContactInfo();
+        bool    IsPrintable(std::string& str);
         void    Run();
 
 

@@ -28,19 +28,19 @@ bool PhoneBook::SetContact(Contact& Contact_Buffer)
 {
     std::string buffer;
 
-    if (!readline("Entre Your First Name: ", buffer))
+    if (!readline("Entre Your First Name: ", buffer) || !IsPrintable(buffer))
         return (Error("Fail to Add First Name"));
     Contact_Buffer.SetFirstName(buffer);
-    if (!readline("Entre Your Last Name: ", buffer))
+    if (!readline("Entre Your Last Name: ", buffer) || !IsPrintable(buffer))
         return (Error("Fail to Add Last Name"));
     Contact_Buffer.SetLastName(buffer);
-    if (!readline("Entre Your Nick Name: ", buffer))
+    if (!readline("Entre Your Nick Name: ", buffer) || !IsPrintable(buffer))
         return (Error("Fail to Add F Nick Name"));
     Contact_Buffer.SetNickName(buffer);
-    if (!readline("Entre Your Phone Number (without spaces): ", buffer) || !IsNumber(buffer))
+    if (!readline("Entre Your Phone Number (without spaces): ", buffer) || !IsNumber(buffer) || !IsPrintable(buffer))
         return (Error("Fail to Add Phone Number"));
     Contact_Buffer.SetPhoneNumber(buffer);
-    if (!readline("Entre Your Dark Secret: ", buffer))
+    if (!readline("Entre Your Dark Secret: ", buffer) || !IsPrintable(buffer))
         return (Error("Fail to Add Dark Secret"));
     Contact_Buffer.SetDarkSecret(buffer);
     return true;
@@ -132,6 +132,16 @@ bool    PhoneBook::AddContact()
     if (ContactNumber < MAX_CONTACTS)
         ContactNumber++;
     return (true);
+}
+
+bool    PhoneBook::IsPrintable(std::string& str)
+{
+    if (str.empty())
+        return false;
+    for (int i = 0; i < (int)str.length(); i++)
+        if (!std::isprint(str[i]))
+            return false;
+    return true;
 }
 
 void    PhoneBook::Run()
