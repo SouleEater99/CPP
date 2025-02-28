@@ -1,5 +1,5 @@
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX =c++
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = Human
 SRC =   ./main.cpp\
 		./Weapon.cpp\
@@ -12,7 +12,7 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)
