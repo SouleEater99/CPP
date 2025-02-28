@@ -4,6 +4,8 @@ Zombie  *zombieHorde(int N, std::string &name)
 {
     Zombie *zombie;
 
+    if (N < 0)
+        return (NULL);
     zombie = new (std::nothrow) Zombie[N];
     if (!zombie)
         return (nullptr);
