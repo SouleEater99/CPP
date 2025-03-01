@@ -3,7 +3,7 @@
 
 int main()
 {
-    Zombie*     HeapZombie;
+    Zombie*     HeapZombie = NULL;
     std::string name;
 
     std::cout << "Entre Name of the first zombie: ";
@@ -14,6 +14,11 @@ int main()
         return (1);
     }
     HeapZombie = newZombie(name);
+    if (!HeapZombie)
+    {
+        std::cerr << "Memory allocation failed\n";
+        return 1;
+    }
     HeapZombie->announce();
     std::cout << "Entre Name of the Second zombie: ";
     std::getline(std::cin, name);
