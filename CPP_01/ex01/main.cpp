@@ -4,7 +4,7 @@
 int main()
 {
     std::string name;
-    Zombie      *zombie;
+    Zombie      *zombie = NULL;
     int         hordeSize;
 
     name = "fifo";
