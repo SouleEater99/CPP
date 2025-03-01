@@ -2,7 +2,7 @@
 #include "./Weapon.hpp"
 #include <iostream>
 
-HumanB::HumanB(const std::string& Name, Weapon *weapon) : _name(Name), _weapon(weapon) {}
+HumanB::HumanB(const std::string& Name,Weapon *weapon) : _name(Name), _weapon(weapon) {}
 
 HumanB::~HumanB()
 {

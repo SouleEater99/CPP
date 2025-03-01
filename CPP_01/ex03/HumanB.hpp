@@ -13,7 +13,7 @@ class   HumanB
         const std::string getName(void) const;
         void        attack();
         void        setWeapon(Weapon& weapon);
-        HumanB(const std::string& Name, Weapon *weapon = nullptr);
+        HumanB(const std::string& Name, Weapon *weapon = NULL);
         ~HumanB();
         
 };
