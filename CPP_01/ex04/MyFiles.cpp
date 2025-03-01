@@ -1,7 +1,7 @@
 #include "./MyFiles.hpp"
 
 MyFiles::MyFiles(const std::string& filename, const std::string& s1, const std::string& s2) : _FileName(filename),
- _NewFile(filename + ".replace"), _S1(s1), _S2(s2), _ReadFile(filename), _FileReplace(_NewFile) {}
+ _NewFile(filename + ".replace"), _S1(s1), _S2(s2), _ReadFile(filename.c_str()), _FileReplace(_NewFile.c_str()) {}
 
 MyFiles::~MyFiles()
 {
@@ -32,18 +32,17 @@ void    MyFiles::closeFiles()
 
 void    MyFiles::replaceAll()
 {
-    int pos;
+    unsigned int    pos;
 
-    pos = 0;
     while (getline(_ReadFile, _Buffer))
     {
+        pos = 0;
         while (!_S1.empty() && (pos = _Buffer.find(_S1)) != std::string::npos)
         {
-            if (pos >= 0)
-            {
-                _Buffer.erase(pos, _S1.length());
-                _Buffer.insert(pos, _S2);
-            }
+            _Buffer.erase(pos, _S1.length());
+            _Buffer.insert(pos, _S2);
+            pos += _S2.length();
+            std::cout << "=========" << _Buffer << "==========\n";
         }
         _FileReplace << _Buffer << std::endl;
     }
