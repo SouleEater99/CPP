@@ -37,7 +37,7 @@ void    MyFiles::replaceAll()
     while (getline(_ReadFile, _Buffer))
     {
         pos = 0;
-        while (!_S1.empty() && (pos = _Buffer.find(_S1)) != std::string::npos)
+        while (!_S1.empty() && (pos = _Buffer.find(_S1, pos)) != std::string::npos)
         {
             _Buffer.erase(pos, _S1.length());
             _Buffer.insert(pos, _S2);
