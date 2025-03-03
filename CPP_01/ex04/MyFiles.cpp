@@ -30,21 +30,22 @@ void    MyFiles::closeFiles()
     _FileReplace.close();
 }
 
-void    MyFiles::replaceAll()
+void MyFiles::replaceAll()
 {
-    unsigned int    pos;
+    size_t pos;
 
     while (getline(_ReadFile, _Buffer))
     {
         pos = 0;
         while (!_S1.empty() && (pos = _Buffer.find(_S1, pos)) != std::string::npos)
         {
+            // std::cout << "pos : " << pos << std::endl;
             _Buffer.erase(pos, _S1.length());
+            // std::cout << "Buffer.earse() : " << _Buffer << std::endl;
             _Buffer.insert(pos, _S2);
+            // std::cout << "Buffer.insert() : " << _Buffer << std::endl;
             pos += _S2.length();
-            std::cout << "=========" << _Buffer << "==========\n";
         }
         _FileReplace << _Buffer << std::endl;
     }
 }
-
