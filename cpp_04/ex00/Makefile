@@ -1,5 +1,5 @@
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+CXX = c++
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 NAME = animal
 SRC =   ./main.cpp\
 		./Animal.cpp\
@@ -11,12 +11,12 @@ SRC =   ./main.cpp\
 OBJ = $(SRC:.cpp=.o)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CPPFLAGS) -c $< -o $@
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 
 clean:

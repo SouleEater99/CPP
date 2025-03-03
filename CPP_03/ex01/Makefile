@@ -1,5 +1,5 @@
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+CXX = c++
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 NAME = ScavTrap
 SRC =   ./main.cpp\
 		./ClapTrap.cpp\
@@ -10,7 +10,7 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)

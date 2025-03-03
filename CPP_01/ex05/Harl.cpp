@@ -41,7 +41,18 @@ void    Harl::complain( std::string level )
         std::cerr << "This level Not Found\n";
 }
 
-Harl::Harl() : _levels{"debug", "info", "warning", "error"}, _ptrToLevels{&Harl::debug, &Harl::info, &Harl::warning, &Harl::error} {}
+Harl::Harl()
+{
+    _levels[0] = "debug";
+    _levels[1] = "info";
+    _levels[2] = "warning";
+    _levels[3] = "error";
+
+    _ptrToLevels[0] = &Harl::debug;
+    _ptrToLevels[1] = &Harl::info;
+    _ptrToLevels[2] = &Harl::warning;
+    _ptrToLevels[3] = &Harl::error;
+}
 
 Harl::~Harl()
 {
