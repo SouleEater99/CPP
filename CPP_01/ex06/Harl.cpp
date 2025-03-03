@@ -37,16 +37,17 @@ int     Harl::getStringIndex( const std::string& level ) const
 
 void    Harl::complain( std::string level )
 {
-    int index;
-
     switch (getStringIndex(level))
     {
         case 0:
             (this->*_ptrToLevels[0])();
+            /* fall through */
         case 1: 
             (this->*_ptrToLevels[1])();
+            // fall through
         case 2:
             (this->*_ptrToLevels[2])();
+            /* fall through */
         case 3: 
             (this->*_ptrToLevels[3])();
             break;
@@ -55,6 +56,17 @@ void    Harl::complain( std::string level )
     }
 }
 
-Harl::Harl() : _levels{"DEBUG", "INFO", "WARNING", "ERROR"}, _ptrToLevels{&Harl::debug, &Harl::info, &Harl::warning, &Harl::error} {}
+Harl::Harl()
+{
+    _levels[0] = "DEBUG";
+    _levels[1] = "INFO";
+    _levels[2] = "WARNING";
+    _levels[3] = "ERROR";
+
+    _ptrToLevels[0] = &Harl::debug;
+    _ptrToLevels[1] = &Harl::info;
+    _ptrToLevels[2] = &Harl::warning;
+    _ptrToLevels[3] = &Harl::error;
+}
 
 Harl::~Harl() {}
