@@ -19,7 +19,7 @@ DiamondTrap::DiamondTrap(const std::string& name): ClapTrap(name + "_clap_name")
 
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap& other): ClapTrap(other) 
+DiamondTrap::DiamondTrap(const DiamondTrap& other): ClapTrap(other), ScavTrap(other), FragTrap(other)
 {
     DiamondTrap::_Name = other.DiamondTrap::_Name; // i need to test this if i remove DiamondTrap
     std::cout << "DiamondTrap Copy Constructor Called\n";
