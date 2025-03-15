@@ -5,12 +5,10 @@
 
 class ScavTrap : public ClapTrap
 {
-private:
-    /* data */
 public:
     ScavTrap();
     ScavTrap(const std::string& name);
-    ScavTrap(ScavTrap& other);
+    ScavTrap(const ScavTrap& other);
     ~ScavTrap();
     ScavTrap&   operator = (const ScavTrap& other);
     void attack(const std::string& target);
