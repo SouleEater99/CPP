@@ -10,7 +10,7 @@ ClapTrap::ClapTrap(const std::string& name): _Name(name), _HitPoits(10), _Energy
     std::cout << "ClapTrap Parameterized Constructor for " << name << " Called\n";
 }
 
-ClapTrap::ClapTrap(ClapTrap& other): _Name(other._Name), _HitPoits(other._HitPoits), _EnergyPoints(other._EnergyPoints), _AttackDamage(other._AttackDamage)
+ClapTrap::ClapTrap(const ClapTrap& other): _Name(other._Name), _HitPoits(other._HitPoits), _EnergyPoints(other._EnergyPoints), _AttackDamage(other._AttackDamage)
 {
     std::cout << "ClapTrap Copy Constructor Called\n";
 }
