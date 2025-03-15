@@ -1,6 +1,6 @@
 #include "./DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(): ClapTrap("Default_Name"), ScavTrap("Default_Name"), FragTrap("Default_Name")
+DiamondTrap::DiamondTrap(): ClapTrap(), ScavTrap(), FragTrap()
 {
     DiamondTrap::_Name = "Default_Name";
     _HitPoits = FragTrap::_HitPoits;
@@ -22,6 +22,7 @@ DiamondTrap::DiamondTrap(const std::string& name): ClapTrap(name + "_clap_name")
 DiamondTrap::DiamondTrap(const DiamondTrap& other): ClapTrap(other), ScavTrap(other), FragTrap(other)
 {
     DiamondTrap::_Name = other.DiamondTrap::_Name; // i need to test this if i remove DiamondTrap
+    _EnergyPoints = other._EnergyPoints;
     std::cout << "DiamondTrap Copy Constructor Called\n";
 }
 
