@@ -1,8 +1,8 @@
 CXX = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
-NAME = Bureaucreat
+NAME = Bureaucrat
 SRC =   ./main.cpp\
-		./Bureaucreat.cpp
+		./Bureaucrat.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
