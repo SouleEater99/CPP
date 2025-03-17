@@ -11,18 +11,12 @@ Bureaucrat::~Bureaucrat()
 
 void        Bureaucrat::_CheckException() const
 {
-    try
-    {
         if (_Grade > 150)
             throw "Bureaucrat::GradeTooLowException.\n";
         else if (_Grade == 0)
-            throw " Bureaucrat::GradeTooHighException\n";
-    }
-    catch(const char *error_msg)
-    {
-        std::cerr << error_msg;
-        std::exit(1);
-    }
+            throw "Bureaucrat::GradeTooHighException\n";
+
+
 }
 
 void        Bureaucrat::increment()

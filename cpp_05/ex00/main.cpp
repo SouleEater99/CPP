@@ -2,8 +2,17 @@
 
 int main ()
 {
+    try
+    {
+        /* code */
     Bureaucrat bure("ali", 1);
 
-    bure.~Bureaucrat();
-    std::cout << bure;
+    bure.increment();
+        std::cout << bure;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
 }
