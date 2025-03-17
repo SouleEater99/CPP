@@ -8,6 +8,8 @@ Cat::Cat() : Animal(), _Brain(new Brain())
 
 Cat::Cat(const Cat& other): Animal(other)
 {
+    _Brain = new Brain();
+    *_Brain = *other._Brain;
     std::cout << "Cat Copy Constructor\n";
 }
 
@@ -21,9 +23,8 @@ Cat& Cat::operator = (const Cat& other)
 {
     if (this == &other)
         return *this;
-    if (this->_Brain)
-        delete this->_Brain;
     this->type = other.type;
+    *this->_Brain = *other._Brain;
     return *this;
 }
 
