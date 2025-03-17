@@ -11,7 +11,7 @@ protected:
 public:
     WrongAnimal();
     WrongAnimal(const WrongAnimal& other);
-    virtual ~WrongAnimal();
+    ~WrongAnimal();
     WrongAnimal& operator = (const WrongAnimal& other);
     void        makeSound() const;
     std::string getType() const; 
