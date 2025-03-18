@@ -21,16 +21,19 @@ int main()
             delete animal[i];
     }
     {
-        std::cout << "+++++++++ test copy constructor  +++++++++\n";
+        std::cout << "+++++++++ test polymorphism and subtype +++++++++\n";
         Animal *dog = new Dog();
         Animal *cat = new Cat();
         Animal *animal = new Animal();
 
+        std::cout << "Animal Type: " << dog->getType() << std::endl;
+        dog->makeSound();
+        std::cout << "Animal Type: " << cat->getType() << std::endl;
+        cat->makeSound();
         *animal = *dog;
         std::cout << "Animal Type: " << animal->getType() << std::endl;
         animal->makeSound();
         
-
         delete dog;
         delete cat;
         delete animal;

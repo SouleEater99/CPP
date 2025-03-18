@@ -7,7 +7,7 @@ int main()
     Animal *animal[100];
 
     // animal[0] = new Animal;
-    // Animal Aanimal = Animal(); // will not work cause the class is abstract 
+    // Animal Aanimal = Animal(); // will not work cause the class is abstract
     for (int i = 0; i < 100; i++)
     {
         if (i < 50)
@@ -21,4 +21,8 @@ int main()
     for (int i = 0; i < 100; i++)
         delete animal[i];
 
+    {
+        Dog basic;
+        Dog tmp = basic;
+    }
 }
