@@ -11,7 +11,7 @@ IMateriaSource* src = new MateriaSource();
 for (int i = 0; i < 4; i++)
     src->learnMateria(new Ice());
 
-std::cout << "++++++++++ { testing enquipe is cross the limit for grabage collector } +++++++++++\n";
+std::cout << "++++++++++ { testing enquipe is cross the limit for grabage collector (with the same address) } +++++++++++\n";
 
 for (int i = 0; i < 100; i++)
 {

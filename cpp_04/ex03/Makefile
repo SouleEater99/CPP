@@ -1,7 +1,7 @@
 CXX = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 NAME = Character
-SRC =   ./main_4.cpp\
+SRC =   ./main_0.cpp\
 		./AMateria.cpp\
 		./Cure.cpp\
 		./Ice.cpp\

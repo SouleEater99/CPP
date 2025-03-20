@@ -24,6 +24,8 @@ Character::Character(const Character &other) : _name(other._name)
     {
         if (other._inventory[i])
             this->_inventory[i] = other._inventory[i]->clone();
+        else
+            this->_inventory[i] = NULL;
     }
     this->_inv_size = other._inv_size;
     // std::cout << "Character: Copy Constructor Called\n";

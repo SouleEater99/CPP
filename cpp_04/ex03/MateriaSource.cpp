@@ -10,7 +10,13 @@ MateriaSource::MateriaSource(): _src_size(0)
 MateriaSource::MateriaSource(const MateriaSource& other): _src_size(0)
 {
     for (int i = 0; i < 4; ++i)
-        _src_store[i] = other._src_store[i]->clone();
+    {
+        if (other._src_store[i])
+            _src_store[i] = other._src_store[i]->clone();
+        else
+            _src_store[i] = NULL;
+        _src_size = other._src_size;
+    }
     // std::cout << "MateriaSource Copy Constructor Called\n";
 }
 
@@ -56,7 +62,7 @@ void MateriaSource::learnMateria(AMateria *m)
         }
     }
     else    
-        std::cout << (_src_size >= 4 ? "Source Inventory are FULL\n" : "No Materia Found\n");
+        std::cout << (_src_size >= 4 ? "Source Inventory are FULL (PLEASE FREE THAT ONE YOU ENTRED)\n" : "No Materia Found\n");
 
 }
 AMateria *MateriaSource::createMateria(std::string const &type)

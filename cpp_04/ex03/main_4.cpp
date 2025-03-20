@@ -5,6 +5,7 @@
 
 int main()
 {
+    std::cout << "test AMateria why it's doesn't make sense using copy constructor\n";
     AMateria* ice = new Ice();
     AMateria* p = new Cure();
 

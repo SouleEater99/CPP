@@ -18,9 +18,9 @@ AMateria::AMateria(const AMateria& other): _type(other._type)
 
 AMateria&   AMateria::operator = (const AMateria& other)
 {
-    std::cout << "++++++++++++++++++++++++\n"; 
     if (this == &other)
         return *this;
+    _type = other._type;
     return *this;
 }
 

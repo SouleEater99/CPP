@@ -15,6 +15,14 @@ Ice::~Ice()
     // std::cout << "Ice: Destructor Called\n";
 }
 
+Ice&   Ice::operator = (const Ice& other)
+{
+    if (this == &other)
+        return *this;
+    _type = other._type;
+    return *this;
+}
+
 AMateria    *Ice::clone() const
 {
     AMateria* clone;

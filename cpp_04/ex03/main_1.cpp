@@ -26,7 +26,7 @@ for (int i = 0; i < 4; i++)
     me->use(i, *me);
 }
 
-std::cout << "++++++++++ { testing copy assignment and copt constructor } +++++++++++\n";
+std::cout << "++++++++++ { testing copy assignment and copy constructor } +++++++++++\n";
 
 Character who = *me;
 Character who_2(*me);
