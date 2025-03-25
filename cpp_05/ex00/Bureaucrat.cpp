@@ -1,6 +1,6 @@
 #include "./Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string name, unsigned int grade): _Name(name), _Grade(grade)
+Bureaucrat::Bureaucrat(const std::string name, int grade): _Name(name), _Grade(grade)
 {
     _CheckException();
 }
@@ -12,11 +12,9 @@ Bureaucrat::~Bureaucrat()
 void        Bureaucrat::_CheckException() const
 {
         if (_Grade > 150)
-            throw "Bureaucrat::GradeTooLowException.\n";
-        else if (_Grade == 0)
-            throw "Bureaucrat::GradeTooHighException\n";
-
-
+            throw Bureaucrat::GradeTooLowException();
+        else if (_Grade < 1)
+            throw Bureaucrat::GradeTooHighException();
 }
 
 void        Bureaucrat::increment()
@@ -39,4 +37,16 @@ std::ostream&   operator << (std::ostream& out, const Bureaucrat& bure)
 
 std::string Bureaucrat::getName() const     {return (_Name);}
 
-unsigned int        Bureaucrat::getGrade() const    {return (_Grade);}
+int         Bureaucrat::getGrade() const    {return (_Grade);}
+
+
+const char  *Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return "Bureaucrat::GradeTooHighException.\n";
+}
+
+
+const char  *Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return "Bureaucrat::GradeTooLowException.\n";
+}
