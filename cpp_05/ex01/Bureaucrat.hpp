@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <cstdlib>
+#include "./Form.hpp"
 
 class Bureaucrat
 {
@@ -32,7 +33,7 @@ private:
         const char *what() const throw();
     };
 
-    
+    void    signForm(Form& form);
 };
 
 std::ostream&   operator << (std::ostream& out, const Bureaucrat& bure);
