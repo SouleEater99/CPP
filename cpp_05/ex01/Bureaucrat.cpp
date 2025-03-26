@@ -1,4 +1,5 @@
 #include "./Bureaucrat.hpp"
+#include "./Form.hpp"
 
 Bureaucrat::Bureaucrat(const std::string name, int grade): _Name(name), _Grade(grade)
 {
@@ -18,6 +19,8 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat& Bureaucrat::operator = (const Bureaucrat& other)
 {
+    if (this == &other)
+        return *this;
     this->_Grade = other._Grade;
     return *this;
 }
@@ -75,6 +78,6 @@ void    Bureaucrat::signForm(Form& form)
     }
     catch(const std::exception& e)
     {
-        std::cout << _Name << " couldn't sign " << form.GetName()<< " becuase " << e.what();
+        std::cout << _Name << " couldn't sign " << form.GetName()<< " because " << e.what();
     }   
 }

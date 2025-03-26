@@ -1,4 +1,5 @@
 #include "./Form.hpp"
+#include "./Bureaucrat.hpp"
 
 Form::Form(): _Name("Defual form"), _IsSigned(false), _SignGrade(10), _ExecuteGrade(5)
 {
@@ -30,13 +31,13 @@ Form&   Form::operator = (const Form& other)
 
 const char  *Form::GradeTooHighException::what() const throw()
 {
-    return "Bureaucrat::GradeTooHighException.\n";
+    return "Form::GradeTooHighException.";
 }
 
 
 const char  *Form::GradeTooLowException::what() const throw()
 {
-    return "Bureaucrat::GradeTooLowException.\n";
+    return "Form::GradeTooLowException.";
 }
 
 void    Form::_CheckException() const
@@ -83,7 +84,7 @@ void        Form::beSigned(const Bureaucrat& Bure)
 
 std::ostream&    operator << (std::ostream& out ,const Form& form)
 {
-    out << " name : " << form.GetName();
+    out << "name : " << form.GetName();
     out << " | Is_Signed : " << form.GetIsSigned();
     out << " | Signed_Grade : " << form.GetSignedGrade();
     out << " | Execute_Grade : " << form.GetExecuteGrade();
