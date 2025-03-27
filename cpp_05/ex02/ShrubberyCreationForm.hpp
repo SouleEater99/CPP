@@ -13,7 +13,7 @@ public:
 
     void execute(Bureaucrat const & executor) const;
 
-    class FileNotOpen : public std::exception
+    class FileNotOpenException : public std::exception
     {
         public:
             const char *what() const throw();

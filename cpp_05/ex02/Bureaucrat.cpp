@@ -58,13 +58,13 @@ int         Bureaucrat::getGrade() const    {return (_Grade);}
 
 const char  *Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return "Bureaucrat::GradeTooHighException.\n";
+    return "Bureaucrat::GradeTooHighException.";
 }
 
 
 const char  *Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return "Bureaucrat::GradeTooLowException.\n";
+    return "Bureaucrat::GradeTooLowException.";
 }
 
 
@@ -91,6 +91,6 @@ void    Bureaucrat::executeForm(AForm const & form)
     }
     catch(const std::exception& e)
     {
-        std::cerr << "Bureauract: ExecuteForm Fail Because of " << e.what() << '\n';
+        std::cerr << "Bureaucrat: ExecuteForm Failed Because " << e.what() << '\n';
     }
 }

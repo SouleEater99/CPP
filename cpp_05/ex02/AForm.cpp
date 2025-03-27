@@ -40,9 +40,9 @@ const char  *AForm::GradeTooLowException::what() const throw()
     return "AForm::GradeTooLowException.";
 }
 
-const char *AForm::FormNotSigned::what() const throw()
+const char *AForm::FormNotSignedException::what() const throw()
 {
-    return ("AForm:NotSigned");
+    return ("AForm:NotSignedException");
 }
 
 void    AForm::_CheckException() const
@@ -91,7 +91,7 @@ void AForm::check_execute(Bureaucrat const& executor) const
 {
 
     if (!this->GetIsSigned())
-        throw FormNotSigned();
+        throw FormNotSignedException();
     else if (executor.getGrade() > this->GetExecuteGrade())
         throw Bureaucrat::GradeTooLowException();
 }
