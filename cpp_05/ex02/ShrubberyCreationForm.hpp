@@ -12,6 +12,12 @@ public:
     ShrubberyCreationForm&  operator = (const ShrubberyCreationForm& other);
 
     void execute(Bureaucrat const & executor) const;
+
+    class FileNotOpen : public std::exception
+    {
+        public:
+            const char *what() const throw();
+    };
 };
 
 

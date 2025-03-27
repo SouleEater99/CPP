@@ -34,13 +34,15 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 
     check_execute(executor);
 
-    std::fstream file(FileName.c_str());
+    std::ofstream file(FileName.c_str());
 
     if (!file.is_open())
-    {
-        std::cerr << "Error: File " << this->GetName() << "_shrubbery not open\n";
-        return;
-    }
+        throw FileNotOpen();
     file << shrubbery << std::endl;
     file.close();
+}
+
+const char *ShrubberyCreationForm::FileNotOpen::what() const throw()
+{
+    return "ShrubberyCreationForm::FileNotOpen";
 }
