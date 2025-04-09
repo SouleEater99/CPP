@@ -4,6 +4,7 @@
 #include "PresidentialPardonForm.hpp"
 
 int main() {
+    std::cout << "\n+++++++++++++++++++++++++++++++++++++++\n";
     // Test 1: Shrubbery Creation Form - Success
     try {
         Bureaucrat gardener("Alice", 137);
@@ -16,6 +17,7 @@ int main() {
         std::cerr << "Error: " << e.what() << "\n";
     }
 
+    std::cout << "\n+++++++++++++++++++++++++++++++++++++++\n";
     // Test 2: Robotomy Request Form - 50% Success
     try {
         Bureaucrat engineer("Bob", 45);
@@ -30,6 +32,7 @@ int main() {
         std::cerr << "Error: " << e.what() << "\n";
     }
 
+    std::cout << "\n+++++++++++++++++++++++++++++++++++++++\n";
     // Test 3: Presidential Pardon Form - High Level Execution
     try {
         Bureaucrat president("Zaphod", 1);
@@ -42,6 +45,7 @@ int main() {
         std::cerr << "Error: " << e.what() << "\n";
     }
 
+    std::cout << "\n+++++++++++++++++++++++++++++++++++++++\n";
     // Test 4: Execution Without Signing
     try {
         Bureaucrat junior("Charlie", 150);
@@ -53,6 +57,7 @@ int main() {
         std::cerr << "Expected error: " << e.what() << "\n";
     }
 
+    std::cout << "\n+++++++++++++++++++++++++++++++++++++++\n";
     // Test 5: Insufficient Execution Grade
     try {
         Bureaucrat midLevel("Dave", 140);
@@ -65,6 +70,7 @@ int main() {
         std::cerr << "Expected error: " << e.what() << "\n";
     }
 
+    std::cout << "\n+++++++++++++++++++++++++++++++++++++++\n";
     // Test 6: Form Copy and Assignment
     try {
         ShrubberyCreationForm original("Forest");

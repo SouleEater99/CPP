@@ -17,11 +17,12 @@ private:
     Bureaucrat(const Bureaucrat& other);
     ~Bureaucrat();
     Bureaucrat& operator = (const Bureaucrat& other);
-    std::string getName() const;
-    int        getGrade() const;
-    void        increment();
-    void        decrement();
-    void    _CheckException() const ;
+
+    std::string     getName() const;
+    int             getGrade() const;
+    void            increment();
+    void            decrement();
+    void            _CheckException() const ;
 
     class GradeTooHighException : public std::exception
     {
