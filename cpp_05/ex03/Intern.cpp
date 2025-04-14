@@ -33,13 +33,16 @@ Intern& Intern::operator = (const Intern& other)
 
 int       Intern::_GetIndexForm(const std::string& formName)
 {
-    if (formName == "shrubbery creation")
-        return 0;
-    else if (formName == "shrubbery creation") 
-        return 1;
-    else if (formName == "presidential pardon") 
-        return 2;
-    return 3;
+    const std::string names[3] = {
+        "shrubbery creation",
+        "robotomy request",
+        "presidential pardon"
+    };
+
+    for (int i = 0; i < 3; i++)
+        if (formName == names[i])
+            return i;
+    return -1;
 }
 
 AForm*      Intern::_CreateShrubberyCreation(const std::string& target)
@@ -62,7 +65,21 @@ AForm*    Intern::makeForm(const std::string& formName, const std::string& targe
     int index;
 
     index = _GetIndexForm(formName);
-    if (index <= 2)
-        return (this->*_CreateForm[index])(target);
+    if (index < 0)
+    {
+        std::cerr << "Intern: Failed to Create Form. (This Form Name doesn't Exist)\n";
+        return NULL;
+    }
+    try
+    {
+        AForm* form = (this->*_CreateForm[index])(target);
+        std::cout << "Intern creates " << form->GetName() << std::endl;
+        return form;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Failed Form creation: " << e.what() << std::endl;
+        return NULL;
+    }
     return NULL;
 }
