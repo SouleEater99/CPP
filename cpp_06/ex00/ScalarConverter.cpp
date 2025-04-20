@@ -7,6 +7,8 @@ ScalarConverter::ScalarConverter()
 
 ScalarConverter::ScalarConverter(const ScalarConverter& other)
 {
+    if (this != &other)
+        _PrintLiteralType = other._PrintLiteralType;
     std::cout << "ScalarConverter: Copy Constructor Called" << std::endl;
 }
 
@@ -33,7 +35,7 @@ bool    ScalarConverter::IsChar(const std::string& str)
 
 bool    ScalarConverter::IsInt(const std::string& str)
 {
-    for (int i = 0; i < str.length(); i++)
+    for (int i = 0; i < static_cast<int>(str.length()); i++)
     {
         if (i == 0 && (str[i] == '-' || str[i] == '+'))
             continue;
@@ -55,15 +57,17 @@ bool    ScalarConverter::IsFloat(const std::string& str)
         return false;
     if (i == 0 && (str[i] == '-' || str[i] == '+'))
         i++;
-    while (i < str.length() - 1)
+    while (i < static_cast<int>(str.length() - 1))
     {
         if (str[i] == '.' && str[i + 1] && str[i + 1] != 'f')
             n_dot++;
         else if (!isdigit(str[i++]))
             return false;
     }
-    if (n_dot > 1 || !str[i] == 'f')
+    if (n_dot > 1 || str[i] != 'f')
+    {
         return false;
+    }
     return true;
 }
 
@@ -79,7 +83,7 @@ bool    ScalarConverter::IsDouble(const std::string& str)
         return false;
     if (i == 0 && (str[i] == '-' || str[i] == '+'))
         i++;
-    while (i < str.length() - 1)
+    while (i < static_cast<int>(str.length() - 1))
     {
         if (str[i] == '.' && str[i + 1])
             n_dot++;
@@ -101,6 +105,7 @@ int     ScalarConverter::_PrintByChar(const std::string& str)
     std::cout << "int: " << static_cast<int>(c) << std::endl;
     std::cout << "float: " << static_cast<float>(c) << std::endl;
     std::cout << "double: " << static_cast<double>(c) << std::endl;
+    return 0;
 }
 
 int     ScalarConverter::_PrintByInt(const std::string& str)
@@ -113,6 +118,7 @@ int     ScalarConverter::_PrintByInt(const std::string& str)
     std::cout << "int: " << static_cast<int>(c) << std::endl;
     std::cout << "float: " << static_cast<float>(c) << std::endl;
     std::cout << "double: " << static_cast<double>(c) << std::endl;
+    return 0;
 }
 
 int     ScalarConverter::_PrintByFloat(const std::string& str)
@@ -125,6 +131,7 @@ int     ScalarConverter::_PrintByFloat(const std::string& str)
     std::cout << "int: " << static_cast<int>(c) << std::endl;
     std::cout << "float: " << static_cast<float>(c) << std::endl;
     std::cout << "double: " << static_cast<double>(c) << std::endl;
+    return 0;
 }
 
 int     ScalarConverter::_PrintByDouble(const std::string& str)
@@ -137,6 +144,7 @@ int     ScalarConverter::_PrintByDouble(const std::string& str)
     std::cout << "int: " << static_cast<int>(c) << std::endl;
     std::cout << "float: " << static_cast<float>(c) << std::endl;
     std::cout << "double: " << static_cast<double>(c) << std::endl;
+    return 0;
 }
 
 int     ScalarConverter::_PrintByNan(const std::string& str)
@@ -149,6 +157,7 @@ int     ScalarConverter::_PrintByNan(const std::string& str)
     std::cout << "int: " << static_cast<int>(c) << std::endl;
     std::cout << "float: " << static_cast<float>(c) << std::endl;
     std::cout << "double: " << static_cast<double>(c) << std::endl;
+    return 0;
 }
 
 void    ScalarConverter::convert(const std::string& str)
