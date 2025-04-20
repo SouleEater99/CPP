@@ -7,11 +7,12 @@
 class ScalarConverter
 {
 private:
-    int     ScalarConverter::*_PrintLiteralType(const std::string& str);
+    int     (ScalarConverter::*_PrintLiteralType)(const std::string& str);
     int     _PrintByChar(const std::string& str);
     int     _PrintByInt(const std::string& str);
     int     _PrintByFloat(const std::string& str);
     int     _PrintByDouble(const std::string& str);
+    int     _PrintByNan(const std::string& str);
 public:
     ScalarConverter();
     ScalarConverter(const ScalarConverter& other);
@@ -23,10 +24,12 @@ public:
     bool    IsFloat(const std::string& other);
     bool    IsDouble(const std::string& other);
 
-
-    
 };
 
+
+
+
+    
 
     
 #endif

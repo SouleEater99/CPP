@@ -22,10 +22,6 @@ ScalarConverter&    ScalarConverter::operator=(const ScalarConverter& other)
     return *this;
 }
 
-void    ScalarConverter::convert(const std::string& str)
-{
-
-}
 
 bool    ScalarConverter::IsChar(const std::string& str)
 {
@@ -82,7 +78,7 @@ bool    ScalarConverter::IsDouble(const std::string& str)
     if (str[i] == '.')
         return false;
     if (i == 0 && (str[i] == '-' || str[i] == '+'))
-        i++;)
+        i++;
     while (i < str.length() - 1)
     {
         if (str[i] == '.' && str[i + 1])
@@ -93,4 +89,79 @@ bool    ScalarConverter::IsDouble(const std::string& str)
     if (n_dot > 1)
         return false;
     return true;
+}
+
+int     ScalarConverter::_PrintByChar(const std::string& str)
+{
+    unsigned char c = static_cast<unsigned char>(str[1]);
+    if (isprint (c))
+        std::cout << "char: '" << c << "'" << std::endl;
+    else
+        std::cout << "char: Non dispalyable" << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << std::endl;
+}
+
+int     ScalarConverter::_PrintByInt(const std::string& str)
+{
+    unsigned char c = static_cast<unsigned char>(str[1]);
+    if (isprint (c))
+        std::cout << "char: '" << c << "'" << std::endl;
+    else
+        std::cout << "char: Non dispalyable" << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << std::endl;
+}
+
+int     ScalarConverter::_PrintByFloat(const std::string& str)
+{
+     unsigned char c = static_cast<unsigned char>(str[1]);
+    if (isprint (c))
+        std::cout << "char: '" << c << "'" << std::endl;
+    else
+        std::cout << "char: Non dispalyable" << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << std::endl;
+}
+
+int     ScalarConverter::_PrintByDouble(const std::string& str)
+{
+    unsigned char c = static_cast<unsigned char>(str[1]);
+    if (isprint (c))
+        std::cout << "char: '" << c << "'" << std::endl;
+    else
+        std::cout << "char: Non dispalyable" << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << std::endl;
+}
+
+int     ScalarConverter::_PrintByNan(const std::string& str)
+{
+    unsigned char c = static_cast<unsigned char>(str[1]);
+    if (isprint (c))
+        std::cout << "char: '" << c << "'" << std::endl;
+    else
+        std::cout << "char: Non dispalyable" << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << std::endl;
+}
+
+void    ScalarConverter::convert(const std::string& str)
+{
+    if (IsChar(str))
+        _PrintLiteralType = &ScalarConverter::_PrintByChar;
+    else if (IsInt(str))
+        _PrintLiteralType = &ScalarConverter::_PrintByInt;
+    else if (IsFloat(str))
+        _PrintLiteralType = &ScalarConverter::_PrintByFloat;
+    else if (IsDouble(str))
+        _PrintLiteralType = &ScalarConverter::_PrintByDouble;
+    else
+        _PrintLiteralType = &ScalarConverter::_PrintByNan;
+    (this->*_PrintLiteralType)(str);
 }
