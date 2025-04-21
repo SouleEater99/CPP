@@ -120,35 +120,57 @@ int     ScalarConverter::_PrintByInt(const std::string& str)
         std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
     else
         std::cout << "char: Non dispalyable" << std::endl;
-    std::cout << "int: " << str << std::endl;
     if (i > __INT32_MAX__)
         std::cout << "int: +inf\n";
     else if (i < -__INT32_MAX__ - 1)
         std::cout << "int: -inf\n";
     else
         std::cout << "int: " << static_cast<int>(i) << std::endl;
+    std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;
     
     return 0;
 }
 
 int     ScalarConverter::_PrintByFloat(const std::string& str)
 {
-    
-    std::cout << "float: " << str << std::endl;
+    float   f;
+
+    f = strtof(str.c_str(), NULL);
+
+    if (isprint (static_cast<unsigned char >(f)))
+        std::cout << "char: '" << static_cast<char>(f) << "'" << std::endl;
+    else
+        std::cout << "char: Non dispalyable" << std::endl;
+    std::cout << "int: " << static_cast<int>(f)  << std::endl;
+    std::cout << "float: " << f << "f" << std::endl;
+    std::cout << "double: " << static_cast<double>(f) << std::endl;
     return 0;
 }
 
 int     ScalarConverter::_PrintByDouble(const std::string& str)
 {
-    
-    std::cout << "double: " <<str << std::endl;
+    double  d;
+
+    d = strtof(str.c_str(), NULL);
+
+    if (isprint (static_cast<unsigned char >(d)))
+        std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
+    else
+        std::cout << "char: Non dispalyable" << std::endl;
+    std::cout << "int: " << static_cast<int>(d)  << std::endl;
+    std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
+    std::cout << "double: " << d << std::endl;
     return 0;
 }
 
 int     ScalarConverter::_PrintByNan(const std::string& str)
 {
-
-    std::cout << "nan: " << str<< std::endl;
+    (void) str;
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+    std::cout << "float: impossible" << std::endl;
+    std::cout << "double: impossible" << std::endl;
     return 0;
 }
 

@@ -6,6 +6,10 @@ int main(int ac, char **av)
     {
         ScalarConverter scalar;
 
+    double  d;
+
+    d = strtof(av[1], NULL);
+        std::cout << d << std::endl;
         scalar.convert(av[1]);
     }
 }
