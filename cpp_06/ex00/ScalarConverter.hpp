@@ -17,7 +17,6 @@ private:
     enum Type { CHAR, INT, FLOAT, DOUBLE, INVALID };
     ScalarConverter();
     ScalarConverter(const ScalarConverter&);
-    ScalarConverter& operator=(const ScalarConverter&);
 
     static Type detectType(const std::string& literal);
     static bool isChar(const std::string& literal);

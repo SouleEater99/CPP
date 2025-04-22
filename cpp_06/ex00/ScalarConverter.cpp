@@ -1,12 +1,5 @@
 #include "./ScalarConverter.hpp"
 
-ScalarConverter&    ScalarConverter::operator=(const ScalarConverter& other)
-{
-    if (this == &other)
-        return *this;
-    return *this;
-}
-
 void ScalarConverter::convert(const std::string& literal) {
     Type type = detectType(literal);
     double value = 0.0;
@@ -18,12 +11,7 @@ void ScalarConverter::convert(const std::string& literal) {
         case INT:
         case FLOAT:
         case DOUBLE:
-            if (type == FLOAT) {
-                std::string substr = literal.substr(0, literal.size() - 1);
-                value = std::strtod(substr.c_str(), NULL);
-            } else {
-                value = std::strtod(literal.c_str(), NULL);
-            }
+            value = std::strtod(literal.c_str(), NULL);
             break;
         case INVALID:
             std::cout << "Invalid input" << std::endl;
@@ -37,6 +25,8 @@ void ScalarConverter::convert(const std::string& literal) {
 }
 
 ScalarConverter::Type ScalarConverter::detectType(const std::string& literal) {
+    if (literal.empty())
+        return INVALID;
     if (isChar(literal))
         return CHAR;
     else if (isFloat(literal))
@@ -69,12 +59,11 @@ bool ScalarConverter::isFloat(const std::string& literal) {
     size_t len = literal.size();
     if (len < 2 || (literal[len - 1] != 'f' && literal[len - 1] != 'F'))
         return false;
-    std::string substr = literal.substr(0, len - 1);
-    if (substr == "nan" || substr == "+inf" || substr == "-inf")
+    if (literal == "nan" || literal == "+inf" || literal == "-inf")
         return true;
     char* end;
-    std::strtod(substr.c_str(), &end);
-    return (end == substr.c_str() + substr.size());
+    std::strtod(literal.c_str(), &end);
+    return (end == literal.c_str() + len - 1);
 }
 
 bool ScalarConverter::isDouble(const std::string& literal) {
