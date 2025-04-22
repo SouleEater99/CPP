@@ -53,6 +53,8 @@ bool    ScalarConverter::IsFloat(const std::string& str)
     i = 0; 
     n_dot = 0;
 
+    if (str == "nanf" || str == "+inff" || str == "inff" || str == "-inff")
+        return true;
     if (str[i] == '.')
         return false;
     if (i == 0 && (str[i] == '-' || str[i] == '+'))
@@ -80,6 +82,8 @@ bool    ScalarConverter::IsDouble(const std::string& str)
     i = 0; 
     n_dot = 0;
 
+    if (str == "nan" || str == "+inf" || str == "inf"|| str == "-inf")
+        return true;
     if (str[i] == '.')
         return false;
     if (i == 0 && (str[i] == '-' || str[i] == '+'))
@@ -118,12 +122,13 @@ int     ScalarConverter::_PrintByInt(const std::string& str)
 
     if (isprint (i))
         std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
-    else
+    else if (i < 256)
         std::cout << "char: Non dispalyable" << std::endl;
-    if (i > __INT32_MAX__)
-        std::cout << "int: +inf\n";
-    else if (i < -__INT32_MAX__ - 1)
-        std::cout << "int: -inf\n";
+    else
+        std::cout << "char: impossible" << std::endl;
+    
+    if (i > __INT32_MAX__ || i < -__INT32_MAX__ - 1)
+        std::cout << "int: impossible";
     else
         std::cout << "int: " << static_cast<int>(i) << std::endl;
     std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
@@ -158,7 +163,10 @@ int     ScalarConverter::_PrintByDouble(const std::string& str)
         std::cout << "char: '" << static_cast<char>(d) << "'" << std::endl;
     else
         std::cout << "char: Non dispalyable" << std::endl;
-    std::cout << "int: " << static_cast<int>(d)  << std::endl;
+    if (str == "nan" || str == "+inf" || str == "inf"|| str == "-inf")
+        std::cout << "int: impossible" << std::endl;
+    else
+        std::cout << "int: " << static_cast<int>(d)  << std::endl;
     std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
     std::cout << "double: " << d << std::endl;
     return 0;
