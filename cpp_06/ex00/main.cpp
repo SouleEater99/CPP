@@ -4,12 +4,10 @@ int main(int ac, char **av)
 {
     if (ac == 2)
     {
-        ScalarConverter scalar;
+        double d;
 
-    double  d;
-
-    d = strtof(av[1], NULL);
+        d = strtof(av[1], NULL);
         std::cout << d << std::endl;
-        scalar.convert(av[1]);
+        ScalarConverter::convert(av[1]);
     }
 }
