@@ -1,5 +1,11 @@
 #include "./ScalarConverter.hpp"
 
+// Add canonical form implementations
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter&) {}
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter&) { return *this; }
+ScalarConverter::~ScalarConverter() {}
+
 void ScalarConverter::convert(const std::string& literal) {
     Type type = detectType(literal);
     double value = 0.0;
@@ -59,8 +65,12 @@ bool ScalarConverter::isFloat(const std::string& literal) {
     size_t len = literal.size();
     if (len < 2 || (literal[len - 1] != 'f' && literal[len - 1] != 'F'))
         return false;
-    if (literal == "nan" || literal == "+inf" || literal == "-inf")
+    
+    // Handle special float values
+    std::string withoutF = literal.substr(0, len - 1);
+    if (withoutF == "nan" || withoutF == "+inf" || withoutF == "-inf")
         return true;
+    
     char* end;
     std::strtod(literal.c_str(), &end);
     return (end == literal.c_str() + len - 1);
@@ -76,11 +86,11 @@ bool ScalarConverter::isDouble(const std::string& literal) {
 
 void ScalarConverter::printChar(double value) {
     std::cout << "char: ";
-    if (std::isnan(value) || std::isinf(value) || value < 0 || value > 255) {
+    if (std::isnan(value) || std::isinf(value) || value < 0 || value > 127) {
         std::cout << "impossible" << std::endl;
         return;
     }
-    unsigned char c = static_cast<unsigned char>(value);
+    char c = static_cast<char>(value);
     if (std::isprint(c))
         std::cout << "'" << c << "'" << std::endl;
     else
@@ -100,7 +110,7 @@ void ScalarConverter::printFloat(double value) {
     if (std::isnan(value)) {
         std::cout << "nanf" << std::endl;
     } else if (std::isinf(value)) {
-        std::cout << (value < 0 ? "-inff" : "inff") << std::endl;
+        std::cout << (value < 0 ? "-inff" : "+inff") << std::endl;
     } else {
         float f = static_cast<float>(value);
         std::cout << f;
@@ -115,7 +125,7 @@ void ScalarConverter::printDouble(double value) {
     if (std::isnan(value)) {
         std::cout << "nan" << std::endl;
     } else if (std::isinf(value)) {
-        std::cout << (value < 0 ? "-inf" : "inf") << std::endl;
+        std::cout << (value < 0 ? "-inf" : "+inf") << std::endl;
     } else {
         std::cout << value;
         if (value == std::floor(value) && !std::isinf(value))
