@@ -2,7 +2,8 @@ CXX = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 NAME =	scalar
 SRC =   ./main.cpp\
-		./ScalarConverter.cpp
+		./Serializer.cpp\
+		./Data.hpp
 
 OBJ = $(SRC:.cpp=.o)
 
