@@ -13,7 +13,7 @@ Form::Form(const std::string& name, int sign, int excute): _Name(name), _IsSigne
 
 Form::Form(const Form& other): _Name(other._Name), _IsSigned(other._IsSigned), _SignGrade(other._SignGrade), _ExecuteGrade(other._ExecuteGrade)
 {
-    _CheckException();
+    _CheckException(); // this no need to check cause it's already checked in the Form constructor
 }
 
 Form::~Form()

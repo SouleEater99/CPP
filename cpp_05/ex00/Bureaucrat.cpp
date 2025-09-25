@@ -2,13 +2,13 @@
 
 Bureaucrat::Bureaucrat(const std::string name, int grade): _Name(name), _Grade(grade)
 {
-    _CheckException();
+    _CheckException(); //check the grade if valid or not.
 }
 
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other): _Name(other._Name), _Grade(other._Grade)
 {
-    _CheckException();
+    _CheckException();  // this no need to check cause it's already checked in the constructor
 }
 
 Bureaucrat::~Bureaucrat()
@@ -32,6 +32,7 @@ void        Bureaucrat::_CheckException() const
 
 void        Bureaucrat::increment()
 {
+
     _Grade--;
     _CheckException();
 }
