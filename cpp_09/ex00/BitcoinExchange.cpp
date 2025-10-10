@@ -127,8 +127,6 @@ bool BitcoinExchange::isFormatValid(const std::string &line, std::string &date, 
     date = line.substr(0, pipePos);
     std::string valueStr = line.substr(pipePos + 1);
 
-    if (line[10] != ' ' || line[pipePos - 1] != ' ' || line[pipePos + 1] != ' ')
-        return false;
     // Trim whitespaces
     date.erase(0, date.find_first_not_of(" \t"));
     date.erase(date.find_last_not_of(" \t") + 1);
