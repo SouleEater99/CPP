@@ -1,21 +1,18 @@
 #include "BitcoinExchange.hpp"
 
-int main()
+int main(int argc, char** argv)
 {
+
+    if (argc != 2)
+    {
+        std::cerr << "Error: could not open file." << std::endl;
+        return 1;
+    }
     BitcoinExchange exchange;
     try
     {
         exchange.loadData("data.csv");
-    
-        float rate;
-        if (exchange.getExchangeRate("2011-01-02", rate))
-        {
-            std::cout << "Exchange rate on 2011-01-01: " << rate << std::endl;
-        }
-        else
-        {
-            std::cout << "No data available for 2011-01-01." << std::endl;
-        }
+        exchange.processInputFile(argv[1]);
     }
     catch(const std::exception& e)
     {

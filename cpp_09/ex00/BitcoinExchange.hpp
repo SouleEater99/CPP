@@ -23,7 +23,8 @@ public:
     bool getExchangeRate(const std::string &date, float &rate) const;
     bool isValidDate(const std::string &date) const;
     bool isValidFloat(const std::string &value, float &result) const;
-
+    void processInputFile(const std::string &filename) const;
+    bool isFormatValid(const std::string &line, std::string &date, float &value) const;
 };
 
 
