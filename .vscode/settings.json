@@ -54,6 +54,9 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "text_encoding": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "cstring": "cpp",
+        "list": "cpp",
+        "map": "cpp"
     }
 }
