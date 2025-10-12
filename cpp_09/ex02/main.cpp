@@ -7,9 +7,8 @@ int main(int argc, char **argv)
 {
     try
     {
-        PmergeMe pmerge;
-        pmerge.sort(argc, argv);
-        pmerge.printResults();
+        PmergeMe pmerge(argc, argv);
+        pmerge.sort();
     }
     catch (const std::exception &e)
     {

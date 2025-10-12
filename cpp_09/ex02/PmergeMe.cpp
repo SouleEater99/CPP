@@ -1,6 +1,13 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {}
+PmergeMe::PmergeMe() 
+{
+}
+
+PmergeMe::PmergeMe(int argc, char **argv) {
+
+    parseInput(argc, argv);
+}
 
 PmergeMe::PmergeMe(const PmergeMe &other) : _vector(other._vector), _deque(other._deque) {}
 
@@ -15,8 +22,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 }
 
 PmergeMe::~PmergeMe() {}
-
-
 
 
 void PmergeMe::parseInput(int argc, char **argv)
@@ -126,35 +131,32 @@ void PmergeMe::mergeInsertSort(std::deque<int> &deq)
     deq = big_numbers;
 }
 
-void PmergeMe::sort(int argc, char **argv)
+void PmergeMe::sort()
 {
-    parseInput(argc, argv);
 
     // Time sorting for vector
     std::clock_t start_vec = std::clock();
-    mergeInsertSort(_vector);
+    std::vector<int> temp_vector = _vector; // Copy for timing
+    mergeInsertSort(temp_vector);
     std::clock_t end_vec = std::clock();
-    double time_vec = double(end_vec - start_vec) / CLOCKS_PER_SEC * 1e6; // microseconds
+    double time_vec = static_cast<double>(end_vec - start_vec) / CLOCKS_PER_SEC * 1000000; // microseconds
 
     // Time sorting for deque
     std::clock_t start_deq = std::clock();
-    mergeInsertSort(_deque);
+    std::deque<int> temp_deque = _deque; // Copy for timing
+    mergeInsertSort(temp_deque);
     std::clock_t end_deq = std::clock();
-    double time_deq = double(end_deq - start_deq) / CLOCKS_PER_SEC * 1e6; // microseconds
+    double time_deq = static_cast<double>(end_deq - start_deq) / CLOCKS_PER_SEC * 1000000; // microseconds
 
     // Print timing results
+    std::cout << "Before: ";
+    for (size_t i = 0; i < _vector.size(); ++i)
+        std::cout << _vector[i] << " ";
+    std::cout << std::endl;
+    std::cout << "After:  ";
+    for (size_t i = 0; i < temp_vector.size(); ++i)
+        std::cout << temp_vector[i] << " ";
+    std::cout << std::endl;
     std::cout << "Time to process a range of " << _vector.size() << " elements with std::vector : " << time_vec << " us" << std::endl;
     std::cout << "Time to process a range of " << _deque.size() << " elements with std::deque  : " << time_deq << " us" << std::endl;
-}
-
-void PmergeMe::printResults() const
-{
-    std::cout << "Sorted sequence: ";
-    for (size_t i = 0; i < _vector.size(); ++i)
-    {
-        std::cout << _vector[i];
-        if (i != _vector.size() - 1)
-            std::cout << " ";
-    }
-    std::cout << std::endl;
 }

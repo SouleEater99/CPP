@@ -21,12 +21,12 @@ private:
 
 public:
     PmergeMe();
+    PmergeMe(int argc, char **argv);
     PmergeMe(const PmergeMe &other);
     PmergeMe &operator=(const PmergeMe &other);
     ~PmergeMe();
 
-    void sort(int argc, char **argv);
-    void printResults() const;
+    void sort();
 
 };
 
