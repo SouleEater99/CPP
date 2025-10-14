@@ -16,7 +16,7 @@ public:
 private:
     enum Type { CHAR, INT, FLOAT, DOUBLE, INVALID };
     ScalarConverter();
-    ScalarConverter(const ScalarConverter&);
+    ScalarConverter(const ScalarConverter& other);
     ScalarConverter& operator=(const ScalarConverter&);
     ~ScalarConverter();
 
