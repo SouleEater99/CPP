@@ -12,7 +12,10 @@ private:
     /* data */
 public:
     Utilis(/* args */);
+    Utilis(const Utilis& other);
+    Utilis& operator=(const Utilis& other);
     ~Utilis();
+
 
     static Base * generate(void);
     static void identify(Base* p);

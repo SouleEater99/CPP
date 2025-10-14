@@ -5,6 +5,17 @@ Utilis::Utilis(/* args */)
 {
 }
 
+Utilis::Utilis(const Utilis& other)
+{
+    (void) other;
+}
+
+Utilis& Utilis::operator=(const Utilis& other)
+{
+    (void) other;
+    return *this;
+}
+
 Utilis::~Utilis()
 {
 }
